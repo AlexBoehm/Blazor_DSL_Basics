@@ -1,12 +1,11 @@
 ﻿using Microsoft.AspNetCore.Components.Rendering;
 using System;
-using System.Collections;
 using System.Collections.Generic;
 using System.Runtime.CompilerServices;
 
 namespace BlazorDSL {
     public static class RenderTreeBuilderExtensionMethods {
-        public static RenderTreeBuilder h1(this RenderTreeBuilder b, int line, string text) {
+        public static RenderTreeBuilder h1(this RenderTreeBuilder b, string text, [CallerLineNumber] int line = 0) {
             // eine Zeile benötigt mehrere Sequenz-Nummern
             b.OpenRegion(line);
             b.OpenElement(0, "h1");
@@ -16,7 +15,12 @@ namespace BlazorDSL {
             return b;
         }
 
-        public static RenderTreeBuilder div(this RenderTreeBuilder b, int line, IEnumerable<KeyValuePair<string, object>> attributes, Action<RenderTreeBuilder> inner) {
+        public static RenderTreeBuilder div(
+            this RenderTreeBuilder b, 
+            IEnumerable<KeyValuePair<string, object>> attributes, 
+            Action<RenderTreeBuilder> inner, 
+            [CallerLineNumber] int line = 0)
+        {
             // eine Zeile benötigt mehrere Sequenz-Nummern
             b.OpenRegion(line);
             b.OpenElement(0, "div");
@@ -29,7 +33,11 @@ namespace BlazorDSL {
             return b;
         }
 
-        public static RenderTreeBuilder p(this RenderTreeBuilder b, int line, string text) {
+        public static RenderTreeBuilder p(
+            this RenderTreeBuilder b,
+            string text,
+            [CallerLineNumber] int line = 0
+        ) {
             // eine Zeile benötigt mehrere Sequenz-Nummern
             b.OpenRegion(line);
             b.OpenElement(0, "p");
@@ -39,7 +47,12 @@ namespace BlazorDSL {
             return b;
         }
 
-        public static RenderTreeBuilder button(this RenderTreeBuilder b, int line, IEnumerable<KeyValuePair<string, object>> attributes, string text) {
+        public static RenderTreeBuilder button(
+            this RenderTreeBuilder b,
+            IEnumerable<KeyValuePair<string, object>> attributes,
+            string text,
+            [CallerLineNumber] int line = 0
+        ) {
             // eine Zeile benötigt mehrere Sequenz-Nummern
             b.OpenRegion(line);
             b.OpenElement(0, "button");
