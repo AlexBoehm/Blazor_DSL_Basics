@@ -9,12 +9,12 @@ namespace BlazorDSL.Pages {
        protected override void BuildRenderTree(RenderTreeBuilder builder) {
             builder
                 .h1("Counter")
-                .div(new[]{
-                    Attribute("class", "box") },
+                .div(attrs(
+                    Attribute("class", "box")),
                     inner =>
                         inner
                         .p("Current count: " + currentCount)
-                        .button(new[] {
+                        .button(attrs(
                             Attribute("class", "btn btn-primary"),
                             Attribute(
                                 "onclick",
@@ -22,7 +22,7 @@ namespace BlazorDSL.Pages {
                                     this,
                                     IncrementCount
                                 )
-                            )},
+                            )),
                             "Click me"
                         )
                     );
