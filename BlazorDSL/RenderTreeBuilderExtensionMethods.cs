@@ -64,6 +64,18 @@ namespace BlazorDSL {
             b.CloseRegion();
             return b;
         }
+
+        public static RenderTreeBuilder ForEach<T>(
+            this RenderTreeBuilder b,
+            IEnumerable<T> items,
+            Action<RenderTreeBuilder, T> action
+        ) {
+            foreach (var item in items) {
+                action(b, item);
+            }
+
+            return b;
+        }
     }
 
     static class HTML {
