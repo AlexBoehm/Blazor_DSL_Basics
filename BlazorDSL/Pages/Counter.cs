@@ -9,20 +9,18 @@ namespace BlazorDSL.Pages {
        protected override void BuildRenderTree(RenderTreeBuilder builder) {
             builder
                 .h1("Counter")
-                .div(attrs(
-                    Attribute("class", "box")),
+                .div(
+                    attrs(
+                        className("box")
+                    ),
                     inner =>
                         inner
                         .p("Current count: " + currentCount)
-                        .button(attrs(
-                            Attribute("class", "btn btn-primary"),
-                            Attribute(
-                                "onclick",
-                                EventCallback.Factory.Create<MouseEventArgs>(
-                                    this,
-                                    IncrementCount
-                                )
-                            )),
+                        .button(
+                            attrs(
+                                className("btn btn-primary"),
+                                OnClick(this, IncrementCount)
+                            ),
                             "Click me"
                         )
                     );

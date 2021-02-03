@@ -1,4 +1,6 @@
-﻿using Microsoft.AspNetCore.Components.Rendering;
+﻿using Microsoft.AspNetCore.Components;
+using Microsoft.AspNetCore.Components.Rendering;
+using Microsoft.AspNetCore.Components.Web;
 using System;
 using System.Collections.Generic;
 using System.Runtime.CompilerServices;
@@ -70,5 +72,17 @@ namespace BlazorDSL {
 
         public static KeyValuePair<string, object>[] attrs(params KeyValuePair<string, object>[] attributes)
             => attributes;
+
+        public static KeyValuePair<string, object> className(string className)
+            => Attribute("class", className);
+
+        public static KeyValuePair<string, object> OnClick(object sender, Action action)
+            => Attribute(
+                "onclick",
+                EventCallback.Factory.Create<MouseEventArgs>(
+                    sender,
+                    action
+                )
+            );
     }
 }
