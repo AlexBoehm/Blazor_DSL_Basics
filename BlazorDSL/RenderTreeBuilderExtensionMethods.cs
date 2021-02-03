@@ -63,4 +63,9 @@ namespace BlazorDSL {
             return b;
         }
     }
+
+    static class HTML {
+        public static KeyValuePair<string, object> Attribute(string name, object value)
+            => new KeyValuePair<string, object>(name, value);
+    }
 }

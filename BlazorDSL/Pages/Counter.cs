@@ -1,7 +1,7 @@
 using Microsoft.AspNetCore.Components;
 using Microsoft.AspNetCore.Components.Web;
 using Microsoft.AspNetCore.Components.Rendering;
-using System.Collections.Generic;
+using static BlazorDSL.HTML;
 
 namespace BlazorDSL.Pages {
     [Route("/counter")]
@@ -10,13 +10,13 @@ namespace BlazorDSL.Pages {
             builder
                 .h1("Counter")
                 .div(new[]{
-                    new KeyValuePair<string, object>("class", "box") },
+                    Attribute("class", "box") },
                     inner =>
                         inner
                         .p("Current count: " + currentCount)
                         .button(new[] {
-                            new KeyValuePair<string, object>("class", "btn btn-primary"),
-                            new KeyValuePair<string, object>(
+                            Attribute("class", "btn btn-primary"),
+                            Attribute(
                                 "onclick",
                                 EventCallback.Factory.Create<MouseEventArgs>(
                                     this,
