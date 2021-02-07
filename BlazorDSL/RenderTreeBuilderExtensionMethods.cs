@@ -49,6 +49,22 @@ namespace BlazorDSL {
             return b;
         }
 
+        public static RenderTreeBuilder p(
+            this RenderTreeBuilder b,
+            IEnumerable<KeyValuePair<string, object>> attributes,
+            string text,
+            [CallerLineNumber] int line = 0
+        ) {
+            // eine Zeile benötigt mehrere Sequenz-Nummern
+            b.OpenRegion(line);
+            b.OpenElement(0, "p");
+            b.AddMultipleAttributes(1, attributes);
+            b.AddContent(2, text);            
+            b.CloseElement();
+            b.CloseRegion();
+            return b;
+        }
+
         public static RenderTreeBuilder button(
             this RenderTreeBuilder b,
             IEnumerable<KeyValuePair<string, object>> attributes,
@@ -87,6 +103,9 @@ namespace BlazorDSL {
 
         public static KeyValuePair<string, object> className(string className)
             => Attribute("class", className);
+
+        public static KeyValuePair<string, object> style(string value)
+            => Attribute("style", value);
 
         public static KeyValuePair<string, object> OnClick(object sender, Action action)
             => Attribute(
