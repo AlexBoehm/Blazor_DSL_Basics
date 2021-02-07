@@ -1,9 +1,7 @@
 using Microsoft.AspNetCore.Components;
-using Microsoft.AspNetCore.Components.Web;
 using Microsoft.AspNetCore.Components.Rendering;
 using static BlazorDSL.HTML;
-using System.Linq;
-using System;
+using System.Collections.Generic;
 
 namespace BlazorDSL.Pages {
     [Route("/counter")]
@@ -20,10 +18,17 @@ namespace BlazorDSL.Pages {
                         .div(
                             attrs(), 
                             inner => inner.ForEach(
-                                from name in names
-                                where name.StartsWith("J")
-                                select name,
-                                (inner, name) => inner.p(name)
+                                names,
+                                (inner, name) => {
+                                    inner.p(name);
+
+                                    if (name.StartsWith("J")) {
+                                        inner.button(
+                                            attrs(OnClick(this, () => names.Remove(name))),
+                                            "delete"
+                                        );
+                                    }
+                                }
                             )
                         )
                         .p("Current count: " + currentCount)
@@ -37,7 +42,7 @@ namespace BlazorDSL.Pages {
                     );
         }
 
-        string[] names = new[]{
+        List<string> names = new List<string>{
             "George Washington",
             "John Adams",
             "Thomas Jefferson",
