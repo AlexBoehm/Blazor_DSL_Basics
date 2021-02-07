@@ -20,7 +20,9 @@ namespace BlazorDSL.Pages {
                         .div(
                             attrs(), 
                             inner => inner.ForEach(
-                                names,
+                                from name in names
+                                where name.StartsWith("J")
+                                select name,
                                 (inner, name) => inner.p(name)
                             )
                         )
