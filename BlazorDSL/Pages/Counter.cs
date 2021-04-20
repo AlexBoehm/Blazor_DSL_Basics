@@ -1,31 +1,13 @@
 using Microsoft.AspNetCore.Components;
+using static BlazorDSL.Html;
 
 namespace BlazorDSL.Pages {
     [Route("/counter")]
     public partial class Counter : WebComponent {
 
-        protected override void Render() =>            
+        protected override Node Render() =>
             div(
-                h1("Counter"),
-                div(
-                    attrs(
-                        className("box")
-                    ),
-                    p("Current count: " + currentCount),
-                    button(
-                        attrs(
-                            className("btn btn-primary"),
-                            onClick(IncrementCount),
-                        ),
-                        "Click me"
-                    )
-                )
+                h1("counter")
             );
-
-        private int currentCount = 0;
-
-        private void IncrementCount() {
-            currentCount++;
-        }
     }
 }
