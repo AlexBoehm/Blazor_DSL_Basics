@@ -1,5 +1,7 @@
 ﻿using Microsoft.AspNetCore.Components.Rendering;
 using System;
+using System.Collections.Generic;
+using System.Linq;
 
 namespace BlazorDSL {
     static class Renderer {
@@ -19,7 +21,13 @@ namespace BlazorDSL {
             builder.OpenRegion(sequenceNumber);
             builder.OpenElement(0, n.Tag);
 
-            var nextSequenceInRegion = 1;
+            builder.AddMultipleAttributes(
+                1,
+                from attribute in n.Attributes
+                select new KeyValuePair<string, object>(attribute.Name, attribute.Value)
+            );
+
+            var nextSequenceInRegion = 2;
 
             for (int i = 0; i < n.Inner.Length; i++) {
                 nextSequenceInRegion = Render(builder, n.Inner[i], nextSequenceInRegion);

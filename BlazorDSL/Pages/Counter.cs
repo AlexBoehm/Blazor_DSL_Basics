@@ -10,8 +10,16 @@ namespace BlazorDSL.Pages {
             div(
                 h1("counter"),
                 div(
+                    attrs(
+                        className("box")
+                    ),
                     p("Current Count: " + currentCount),
-                    button("Click me")
+                    button(
+                        attrs(
+                            className("btn btn-primary")
+                        ),
+                        "Click me"
+                    )
                 )
             );
     }
