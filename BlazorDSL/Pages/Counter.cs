@@ -16,11 +16,16 @@ namespace BlazorDSL.Pages {
                     p("Current Count: " + currentCount),
                     button(
                         attrs(
-                            className("btn btn-primary")
+                            className("btn btn-primary"),
+                            onClick(this, IncrementCount)
                         ),
                         "Click me"
                     )
                 )
             );
+
+        private void IncrementCount() {
+            currentCount++;
+        }
     }
 }
