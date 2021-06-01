@@ -15,10 +15,8 @@ namespace BlazorDSL.Pages {
                         className("box")
                     ),
                     div(
-                        (
-                            from name in names
-                            select p(name)
-                        ).ToArray()
+                        from name in names
+                        select p(name)
                     ),
                     p("Current Count: " + currentCount),
                     button(
