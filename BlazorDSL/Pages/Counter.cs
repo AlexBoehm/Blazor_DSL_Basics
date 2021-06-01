@@ -16,6 +16,7 @@ namespace BlazorDSL.Pages {
                     ),
                     div(
                         from name in names
+                        where name.StartsWith("J")
                         select p(name)
                     ),
                     p("Current Count: " + currentCount),
