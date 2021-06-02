@@ -17,13 +17,14 @@ namespace BlazorDSL.Pages {
                     ),
                     div(
                         from name in names
-                        where name.StartsWith("J")
                         select Tags(
                             p(name),
-                            button(
-                                attrs(onClick(this, () => names.Remove(name))),
-                                "delete"
-                            )
+                            name.StartsWith("J")
+                                ? button(
+                                    attrs(onClick(this, () => names.Remove(name))),
+                                    "delete"
+                                )
+                                : empty()
                         )
                     ),
                     p("Current Count: " + currentCount),

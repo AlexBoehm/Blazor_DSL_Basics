@@ -47,6 +47,11 @@ namespace BlazorDSL {
         }
     }
 
+    public class EmptyNode : Node {
+        public static EmptyNode Instance { get; private set; } = new EmptyNode();
+        private EmptyNode() {}
+    }
+
     public class Attribute {
         public string Name { get; set; }
         public object Value { get; set; }

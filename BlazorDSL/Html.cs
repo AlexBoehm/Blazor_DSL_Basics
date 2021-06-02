@@ -18,6 +18,8 @@ namespace BlazorDSL {
         public static Node button(string text) => new TagNode("button", Html.text(text));
         public static Node button(Attribute[] attributes, string text)
             => new TagNode("button", attributes, Html.text(text));
+
+        public static Node empty() => EmptyNode.Instance;
         
         public static Node Tags(params Node[] nodes)
             => new ArrayNode(nodes.ToArray());

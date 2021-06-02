@@ -14,6 +14,7 @@ namespace BlazorDSL {
                 TagNode n => RenderTagNode(builder, sequenceNumber, n),
                 TextNode n => RenderTextNode(builder, sequenceNumber, n),
                 ArrayNode n => RenderArrayNode(builder, sequenceNumber, n),
+                EmptyNode _ => RenderEmptyNode(builder, sequenceNumber),
                 _ => throw new Exception("Unexpected node of Type " + node.GetType().FullName)
             };
         }
@@ -55,6 +56,11 @@ namespace BlazorDSL {
 
             builder.CloseRegion();
 
+            return sequenceNumber + 1;
+        }
+
+        private static int RenderEmptyNode(RenderTreeBuilder builder, int sequenceNumber) {
+            // Nichts zu rendern, die Sequenznummer muss jedoch erhöht werden
             return sequenceNumber + 1;
         }
     }
