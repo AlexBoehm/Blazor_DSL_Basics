@@ -2,6 +2,8 @@
 
 namespace BlazorDSL {
     public abstract class Node {
+        protected static Node[] _emptyNodes = new Node[0];
+        protected static Attribute[] _emptyAttributes = new Attribute[0];
     }
 
     public class TextNode : Node {
@@ -34,9 +36,6 @@ namespace BlazorDSL {
             Inner = inner;
             Attributes = _emptyAttributes;
         }
-
-        protected static Node[] _emptyNodes = new Node[0];
-        protected static Attribute[] _emptyAttributes = new Attribute[0];
     }
 
     public class ArrayNode : Node {
@@ -50,6 +49,14 @@ namespace BlazorDSL {
     public class EmptyNode : Node {
         public static EmptyNode Instance { get; private set; } = new EmptyNode();
         private EmptyNode() {}
+    }
+
+    public class ComponentNode : Node {
+        public Type Type { get; private set; }
+
+        public ComponentNode(Type type) {
+            Type = type;
+        }
     }
 
     public class Attribute {

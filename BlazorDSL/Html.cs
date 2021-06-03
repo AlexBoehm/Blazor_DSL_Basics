@@ -41,6 +41,13 @@ namespace BlazorDSL {
 
         #endregion
 
+        #region Components
+
+        public static Node Component<TComponent>()
+            => new ComponentNode(typeof(TComponent));
+
+        #endregion
+
 
     }
 }
