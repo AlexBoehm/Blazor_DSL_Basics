@@ -11,7 +11,9 @@ namespace BlazorDSL.Pages {
         protected override Node Render() =>
             div(
                 h1("counter"),
-                Component<Greeting>(),
+                Component<Greeting>(
+                    parameter("Name", "Max Mustermann")
+                ),
                 div(
                     attrs(
                         className("box")

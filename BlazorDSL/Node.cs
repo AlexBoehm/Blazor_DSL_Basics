@@ -53,9 +53,16 @@ namespace BlazorDSL {
 
     public class ComponentNode : Node {
         public Type Type { get; private set; }
+        public Attribute[] Attributes { get; private set; }
 
         public ComponentNode(Type type) {
             Type = type;
+            Attributes = _emptyAttributes;
+        }
+
+        public ComponentNode(Type type, Attribute[] attributes) {
+            Type = type;
+            Attributes = attributes;
         }
     }
 

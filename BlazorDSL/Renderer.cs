@@ -24,11 +24,7 @@ namespace BlazorDSL {
             builder.OpenRegion(sequenceNumber);
             builder.OpenElement(0, n.Tag);
 
-            builder.AddMultipleAttributes(
-                1,
-                from attribute in n.Attributes
-                select new KeyValuePair<string, object>(attribute.Name, attribute.Value)
-            );
+            AddAttributes(1, builder, n.Attributes);
 
             var nextSequenceInRegion = 2;
 
@@ -66,9 +62,20 @@ namespace BlazorDSL {
         }
 
         private static int RenderComponentNode(RenderTreeBuilder builder, int sequenceNumber, ComponentNode n) {
-            builder.OpenComponent(sequenceNumber, n.Type);            
+            builder.OpenRegion(sequenceNumber);
+            builder.OpenComponent(0, n.Type);
+            AddAttributes(1, builder, n.Attributes);
             builder.CloseComponent();
+            builder.CloseRegion();
             return sequenceNumber + 1;
+        }
+
+        private static void AddAttributes(int sequenceNumber, RenderTreeBuilder builder, Attribute[] attributes) {
+            builder.AddMultipleAttributes(
+                sequenceNumber,
+                from attribute in attributes
+                select new KeyValuePair<string, object>(attribute.Name, attribute.Value)
+            );
         }
     }
 }

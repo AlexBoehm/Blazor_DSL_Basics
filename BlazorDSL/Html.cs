@@ -30,6 +30,9 @@ namespace BlazorDSL {
         public static Attribute[] attrs(params Attribute[] attributes)
             => attributes;
 
+        public static Attribute parameter(string name, object value)
+            => new Attribute(name, value);
+
         public static Attribute className(string className)
             => new Attribute("class", className);
 
@@ -45,6 +48,9 @@ namespace BlazorDSL {
 
         public static Node Component<TComponent>()
             => new ComponentNode(typeof(TComponent));
+
+        public static Node Component<TComponent>(params Attribute[] parameters)
+            => new ComponentNode(typeof(TComponent), parameters);
 
         #endregion
 
