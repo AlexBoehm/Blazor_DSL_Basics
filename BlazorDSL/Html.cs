@@ -1,8 +1,10 @@
 ﻿using Microsoft.AspNetCore.Components;
+using Microsoft.AspNetCore.Components.Rendering;
 using Microsoft.AspNetCore.Components.Web;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+
 
 namespace BlazorDSL {
     static class Html {
@@ -36,11 +38,51 @@ namespace BlazorDSL {
         public static Attribute className(string className)
             => new Attribute("class", className);
 
+        #endregion
+
+        #region Ereignisse
+
         public static Attribute onClick(object sender, Action callback)
             => new Attribute(
                 "onclick",
                 EventCallback.Factory.Create<MouseEventArgs>(sender, callback)
             );
+
+        #endregion
+
+        #region templateParameter
+
+        public static Attribute templateParameter(string key, params Node[] template)
+            => new Attribute(
+                 key,
+                (RenderFragment)(
+                    (RenderTreeBuilder builder) => {
+                        Renderer.Render(builder, new ArrayNode(template));
+                    }
+                )
+            );
+
+        public static Attribute templateParameter(string key, Func<Node> template)
+            => new Attribute(
+                 key,                
+                (RenderFragment)(
+                    (RenderTreeBuilder builder) => {
+                        Renderer.Render(builder, template());
+                    }
+                )
+            );
+
+        public static Attribute templateParameter<TContext>(string key, Func<TContext, Node> template)
+            => new Attribute(
+                key,                
+                (RenderFragment<TContext>)(
+                    (TContext context) =>
+                        (RenderTreeBuilder builder) => {
+                            Renderer.Render(builder, template(context));
+                        }
+                    )
+                );
+
 
         #endregion
 
@@ -53,7 +95,5 @@ namespace BlazorDSL {
             => new ComponentNode(typeof(TComponent), parameters);
 
         #endregion
-
-
     }
 }
