@@ -1,4 +1,4 @@
-﻿<h3>@Message(Name)</h3>
+﻿<h3>@Message(Name) @Addition</h3>
 
 @code{
     [Parameter]
@@ -6,4 +6,7 @@
 
     [Parameter]
     public RenderFragment<string> Message {get; set;}
+
+    [Parameter]
+    public RenderFragment Addition { get; set; }
 }
