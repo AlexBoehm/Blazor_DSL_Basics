@@ -1,12 +1,10 @@
-﻿<h3>@Message(Name) @Addition</h3>
+﻿<h3>Hello, @Name</h3>
+@ChildContent
 
 @code{
     [Parameter]
     public string Name { get; set; }
-
+    
     [Parameter]
-    public RenderFragment<string> Message {get; set;}
-
-    [Parameter]
-    public RenderFragment Addition { get; set; }
+    public RenderFragment ChildContent { get; set; }
 }
