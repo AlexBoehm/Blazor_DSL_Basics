@@ -16,6 +16,7 @@ namespace BlazorDSL {
                 ArrayNode n => RenderArrayNode(builder, sequenceNumber, n),
                 EmptyNode _ => RenderEmptyNode(builder, sequenceNumber),
                 ComponentNode n => RenderComponentNode(builder, sequenceNumber, n),
+                RenderFragmentNode n => RenderFragmentNode(builder, sequenceNumber, n),
                 _ => throw new Exception("Unexpected node of Type " + node.GetType().FullName)
             };
         }
@@ -67,6 +68,11 @@ namespace BlazorDSL {
             AddAttributes(1, builder, n.Attributes);
             builder.CloseComponent();
             builder.CloseRegion();
+            return sequenceNumber + 1;
+        }
+
+        private static int RenderFragmentNode(RenderTreeBuilder builder, int sequenceNumber, RenderFragmentNode n) {
+            builder.AddContent(sequenceNumber, n.Fragment);
             return sequenceNumber + 1;
         }
 

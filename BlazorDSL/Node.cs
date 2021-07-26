@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Microsoft.AspNetCore.Components;
+using System;
 
 namespace BlazorDSL {
     public abstract class Node {
@@ -63,6 +64,16 @@ namespace BlazorDSL {
         public ComponentNode(Type type, Attribute[] attributes) {
             Type = type;
             Attributes = attributes;
+        }
+    }
+
+    public class RenderFragmentNode : Node {
+#pragma warning disable CS8632 // The annotation for nullable reference types should only be used in code within a '#nullable' annotations context.
+        public RenderFragment? Fragment { get; private set; }
+#pragma warning restore CS8632 // The annotation for nullable reference types should only be used in code within a '#nullable' annotations context.
+
+        public RenderFragmentNode(RenderFragment? fragment) {
+            Fragment = fragment;
         }
     }
 

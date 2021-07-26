@@ -20,9 +20,11 @@ namespace BlazorDSL {
         public static Node button(string text) => new TagNode("button", Html.text(text));
         public static Node button(Attribute[] attributes, string text)
             => new TagNode("button", attributes, Html.text(text));
+        public static Node a(Attribute[] attributes, params Node[] inner)
+            => new TagNode("a", attributes, inner);
 
         public static Node empty() => EmptyNode.Instance;
-        
+
         public static Node Tags(params Node[] nodes)
             => new ArrayNode(nodes.ToArray());
 
@@ -37,6 +39,12 @@ namespace BlazorDSL {
 
         public static Attribute className(string className)
             => new Attribute("class", className);
+
+        public static Attribute href(string value)
+            => new Attribute("href", value);
+
+        public static Attribute target(string value)
+            => new Attribute("target", value);
 
         #endregion
 
@@ -64,7 +72,7 @@ namespace BlazorDSL {
 
         public static Attribute templateParameter(string key, Func<Node> template)
             => new Attribute(
-                 key,                
+                 key,
                 (RenderFragment)(
                     (RenderTreeBuilder builder) => {
                         Renderer.Render(builder, template());
@@ -74,7 +82,7 @@ namespace BlazorDSL {
 
         public static Attribute templateParameter<TContext>(string key, Func<TContext, Node> template)
             => new Attribute(
-                key,                
+                key,
                 (RenderFragment<TContext>)(
                     (TContext context) =>
                         (RenderTreeBuilder builder) => {
@@ -105,5 +113,8 @@ namespace BlazorDSL {
                     ).ToArray()
                 );
         #endregion
+
+        public static Node fragment(RenderFragment fragment)
+            => new RenderFragmentNode(fragment);
     }
 }
