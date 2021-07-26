@@ -94,6 +94,16 @@ namespace BlazorDSL {
         public static Node Component<TComponent>(params Attribute[] parameters)
             => new ComponentNode(typeof(TComponent), parameters);
 
+        public static Node Component<TComponent>(Attribute[] parameters, params Node[] childContent)
+            => new ComponentNode(
+                typeof(TComponent),
+                parameters
+                    .Concat(
+                        new Attribute[] {
+                            templateParameter("ChildContent", childContent)
+                        }
+                    ).ToArray()
+                );
         #endregion
     }
 }

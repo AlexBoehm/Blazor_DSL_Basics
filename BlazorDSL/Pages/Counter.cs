@@ -12,8 +12,10 @@ namespace BlazorDSL.Pages {
             div(
                 h1("counter"),
                 Component<Greeting>(
-                    parameter("Name", "Max Mustermann"),
-                    templateParameter("ChildContent", text("Das ist eine Nachricht"))
+                    attrs(
+                        parameter("Name", "Max Mustermann")
+                    ),
+                    text("Das ist eine Nachricht")
                 ),
                 div(
                     attrs(
