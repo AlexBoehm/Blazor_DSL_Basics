@@ -46,17 +46,7 @@ namespace BlazorDSL {
         public static Attribute target(string value)
             => new Attribute("target", value);
 
-        #endregion
-
-        #region Ereignisse
-
-        public static Attribute onClick(object sender, Action<MouseEventArgs> callback)
-            => new Attribute(
-                "onclick",
-                EventCallback.Factory.Create(sender, callback)
-            );
-
-        #endregion
+        #endregion        
 
         #region templateParameter
 
