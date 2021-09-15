@@ -7,7 +7,7 @@ using System.Linq;
 
 
 namespace BlazorDSL {
-    static class Html {
+    static partial class Html {
         #region Tags
         public static Node div(Attribute[] attributes, params Node[] inner)
             => new TagNode("div", attributes, inner);
@@ -50,10 +50,10 @@ namespace BlazorDSL {
 
         #region Ereignisse
 
-        public static Attribute onClick(object sender, Action callback)
+        public static Attribute onClick(object sender, Action<MouseEventArgs> callback)
             => new Attribute(
                 "onclick",
-                EventCallback.Factory.Create<MouseEventArgs>(sender, callback)
+                EventCallback.Factory.Create(sender, callback)
             );
 
         #endregion
