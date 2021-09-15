@@ -7,7 +7,7 @@ using System.Linq;
 
 
 namespace BlazorDSL {
-    static partial class Html {
+    public static partial class Html {
         #region Tags
         public static Node div(Attribute[] attributes, params Node[] inner)
             => new TagNode("div", attributes, inner);
