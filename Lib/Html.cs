@@ -15,16 +15,20 @@ namespace BlazorDSL {
         public static Node Tags(params Node[] nodes)
             => new ArrayNode(nodes.ToArray());
 
+        public static Node text(string text)
+            => new TextNode(text);
+
         #endregion
 
         #region Attributes
         public static Attribute[] attrs(params Attribute[] attributes)
             => attributes;
 
+        public static Attribute attribute(string key, string value)
+            => new Attribute(key, value);
+
         public static Attribute parameter(string name, object value)
             => new Attribute(name, value);
-
-        public static Node text(string text) => new TextNode(text);
 
         #endregion        
 
