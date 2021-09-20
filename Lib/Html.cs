@@ -24,6 +24,8 @@ namespace BlazorDSL {
         public static Attribute parameter(string name, object value)
             => new Attribute(name, value);
 
+        public static Node text(string text) => new TextNode(text);
+
         #endregion        
 
         #region templateParameter
