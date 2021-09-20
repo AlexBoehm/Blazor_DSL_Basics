@@ -1,0 +1,19 @@
+# List of HTML tags for which the methods should be generated, that take a string as parameter for the inner text
+
+a
+button
+div
+h1
+h2
+h3
+h4
+h5
+h6
+strong
+th
+title
+td
+li
+span
+p
+i
