@@ -816,12 +816,6 @@ namespace BlazorDSL {
         public static Node span(IEnumerable<Node> inner)
             => new TagNode("span", inner.ToArray());
 
-        public static Node span(Attribute[] attributes, string text)
-            => new TagNode("span", attributes, Html.text(text));
-
-        public static Node span(string text)
-            => new TagNode("span", Html.text(text));
-
         public static Node strong(Attribute[] attributes, params Node[] inner)
             => new TagNode("strong", attributes, inner);
 
@@ -974,12 +968,6 @@ namespace BlazorDSL {
 
         public static Node title(IEnumerable<Node> inner)
             => new TagNode("title", inner.ToArray());
-
-        public static Node title(Attribute[] attributes, string text)
-            => new TagNode("title", attributes, Html.text(text));
-
-        public static Node title(string text)
-            => new TagNode("title", Html.text(text));
 
         public static Node tr(Attribute[] attributes, params Node[] inner)
             => new TagNode("tr", attributes, inner);

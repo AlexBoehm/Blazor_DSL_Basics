@@ -1,0 +1,4 @@
+Methodname	Attribute
+className	class
+acceptCharset	accept-charset
+httpEquiv	http-equiv

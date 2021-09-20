@@ -11,9 +11,9 @@ h5
 h6
 strong
 th
-title
+# title
 td
 li
-span
+# span
 p
 i

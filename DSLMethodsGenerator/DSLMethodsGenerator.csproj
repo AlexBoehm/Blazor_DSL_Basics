@@ -9,6 +9,9 @@
     <PackageReference Include="Microsoft.AspNetCore.Components.Web" Version="5.0.9" />
   </ItemGroup>
   <ItemGroup>
+    <None Update="Custom Attribute Method Names.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
     <None Update="Blazor Events.txt">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
