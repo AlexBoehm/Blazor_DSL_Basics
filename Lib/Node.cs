@@ -76,14 +76,4 @@ namespace BlazorDSL {
             Fragment = fragment;
         }
     }
-
-    public class Attribute {
-        public string Name { get; private set; }
-        public object Value { get; private set; }
-
-        public Attribute(string key, object value) {
-            this.Name = key;
-            this.Value = value;
-        }
-    }
 }
