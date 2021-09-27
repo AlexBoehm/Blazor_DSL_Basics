@@ -6,7 +6,7 @@ using System.Linq;
 namespace BlazorDSL {
     public static partial class Html {
         
-        public static Node a(Attribute[] attributes, params Node[] inner)
+        public static Node a(AttributeBase[] attributes, params Node[] inner)
             => new TagNode("a", attributes, inner);
 
         public static Node a(params Node[] inner)
@@ -15,13 +15,13 @@ namespace BlazorDSL {
         public static Node a(IEnumerable<Node> inner)
             => new TagNode("a", inner.ToArray());
 
-        public static Node a(Attribute[] attributes, string text)
+        public static Node a(AttributeBase[] attributes, string text)
             => new TagNode("a", attributes, Html.text(text));
 
         public static Node a(string text)
             => new TagNode("a", Html.text(text));
 
-        public static Node abbr(Attribute[] attributes, params Node[] inner)
+        public static Node abbr(AttributeBase[] attributes, params Node[] inner)
             => new TagNode("abbr", attributes, inner);
 
         public static Node abbr(params Node[] inner)
@@ -30,7 +30,7 @@ namespace BlazorDSL {
         public static Node abbr(IEnumerable<Node> inner)
             => new TagNode("abbr", inner.ToArray());
 
-        public static Node address(Attribute[] attributes, params Node[] inner)
+        public static Node address(AttributeBase[] attributes, params Node[] inner)
             => new TagNode("address", attributes, inner);
 
         public static Node address(params Node[] inner)
@@ -39,10 +39,10 @@ namespace BlazorDSL {
         public static Node address(IEnumerable<Node> inner)
             => new TagNode("address", inner.ToArray());
 
-        public static Node area(Attribute[] attributes)
+        public static Node area(params AttributeBase[] attributes)
             => new TagNode("area", attributes);
 
-        public static Node article(Attribute[] attributes, params Node[] inner)
+        public static Node article(AttributeBase[] attributes, params Node[] inner)
             => new TagNode("article", attributes, inner);
 
         public static Node article(params Node[] inner)
@@ -51,7 +51,7 @@ namespace BlazorDSL {
         public static Node article(IEnumerable<Node> inner)
             => new TagNode("article", inner.ToArray());
 
-        public static Node aside(Attribute[] attributes, params Node[] inner)
+        public static Node aside(AttributeBase[] attributes, params Node[] inner)
             => new TagNode("aside", attributes, inner);
 
         public static Node aside(params Node[] inner)
@@ -60,7 +60,7 @@ namespace BlazorDSL {
         public static Node aside(IEnumerable<Node> inner)
             => new TagNode("aside", inner.ToArray());
 
-        public static Node audio(Attribute[] attributes, params Node[] inner)
+        public static Node audio(AttributeBase[] attributes, params Node[] inner)
             => new TagNode("audio", attributes, inner);
 
         public static Node audio(params Node[] inner)
@@ -69,7 +69,7 @@ namespace BlazorDSL {
         public static Node audio(IEnumerable<Node> inner)
             => new TagNode("audio", inner.ToArray());
 
-        public static Node b(Attribute[] attributes, params Node[] inner)
+        public static Node b(AttributeBase[] attributes, params Node[] inner)
             => new TagNode("b", attributes, inner);
 
         public static Node b(params Node[] inner)
@@ -78,10 +78,10 @@ namespace BlazorDSL {
         public static Node b(IEnumerable<Node> inner)
             => new TagNode("b", inner.ToArray());
 
-        public static Node @base(Attribute[] attributes)
+        public static Node @base(params AttributeBase[] attributes)
             => new TagNode("base", attributes);
 
-        public static Node bdi(Attribute[] attributes, params Node[] inner)
+        public static Node bdi(AttributeBase[] attributes, params Node[] inner)
             => new TagNode("bdi", attributes, inner);
 
         public static Node bdi(params Node[] inner)
@@ -90,7 +90,7 @@ namespace BlazorDSL {
         public static Node bdi(IEnumerable<Node> inner)
             => new TagNode("bdi", inner.ToArray());
 
-        public static Node bdo(Attribute[] attributes, params Node[] inner)
+        public static Node bdo(AttributeBase[] attributes, params Node[] inner)
             => new TagNode("bdo", attributes, inner);
 
         public static Node bdo(params Node[] inner)
@@ -99,7 +99,7 @@ namespace BlazorDSL {
         public static Node bdo(IEnumerable<Node> inner)
             => new TagNode("bdo", inner.ToArray());
 
-        public static Node blockquote(Attribute[] attributes, params Node[] inner)
+        public static Node blockquote(AttributeBase[] attributes, params Node[] inner)
             => new TagNode("blockquote", attributes, inner);
 
         public static Node blockquote(params Node[] inner)
@@ -108,7 +108,7 @@ namespace BlazorDSL {
         public static Node blockquote(IEnumerable<Node> inner)
             => new TagNode("blockquote", inner.ToArray());
 
-        public static Node body(Attribute[] attributes, params Node[] inner)
+        public static Node body(AttributeBase[] attributes, params Node[] inner)
             => new TagNode("body", attributes, inner);
 
         public static Node body(params Node[] inner)
@@ -117,10 +117,10 @@ namespace BlazorDSL {
         public static Node body(IEnumerable<Node> inner)
             => new TagNode("body", inner.ToArray());
 
-        public static Node br(Attribute[] attributes)
+        public static Node br(params AttributeBase[] attributes)
             => new TagNode("br", attributes);
 
-        public static Node button(Attribute[] attributes, params Node[] inner)
+        public static Node button(AttributeBase[] attributes, params Node[] inner)
             => new TagNode("button", attributes, inner);
 
         public static Node button(params Node[] inner)
@@ -129,13 +129,13 @@ namespace BlazorDSL {
         public static Node button(IEnumerable<Node> inner)
             => new TagNode("button", inner.ToArray());
 
-        public static Node button(Attribute[] attributes, string text)
+        public static Node button(AttributeBase[] attributes, string text)
             => new TagNode("button", attributes, Html.text(text));
 
         public static Node button(string text)
             => new TagNode("button", Html.text(text));
 
-        public static Node canvas(Attribute[] attributes, params Node[] inner)
+        public static Node canvas(AttributeBase[] attributes, params Node[] inner)
             => new TagNode("canvas", attributes, inner);
 
         public static Node canvas(params Node[] inner)
@@ -144,7 +144,7 @@ namespace BlazorDSL {
         public static Node canvas(IEnumerable<Node> inner)
             => new TagNode("canvas", inner.ToArray());
 
-        public static Node caption(Attribute[] attributes, params Node[] inner)
+        public static Node caption(AttributeBase[] attributes, params Node[] inner)
             => new TagNode("caption", attributes, inner);
 
         public static Node caption(params Node[] inner)
@@ -153,7 +153,7 @@ namespace BlazorDSL {
         public static Node caption(IEnumerable<Node> inner)
             => new TagNode("caption", inner.ToArray());
 
-        public static Node cite(Attribute[] attributes, params Node[] inner)
+        public static Node cite(AttributeBase[] attributes, params Node[] inner)
             => new TagNode("cite", attributes, inner);
 
         public static Node cite(params Node[] inner)
@@ -162,7 +162,7 @@ namespace BlazorDSL {
         public static Node cite(IEnumerable<Node> inner)
             => new TagNode("cite", inner.ToArray());
 
-        public static Node code(Attribute[] attributes, params Node[] inner)
+        public static Node code(AttributeBase[] attributes, params Node[] inner)
             => new TagNode("code", attributes, inner);
 
         public static Node code(params Node[] inner)
@@ -171,10 +171,10 @@ namespace BlazorDSL {
         public static Node code(IEnumerable<Node> inner)
             => new TagNode("code", inner.ToArray());
 
-        public static Node col(Attribute[] attributes)
+        public static Node col(params AttributeBase[] attributes)
             => new TagNode("col", attributes);
 
-        public static Node colgroup(Attribute[] attributes, params Node[] inner)
+        public static Node colgroup(AttributeBase[] attributes, params Node[] inner)
             => new TagNode("colgroup", attributes, inner);
 
         public static Node colgroup(params Node[] inner)
@@ -183,7 +183,7 @@ namespace BlazorDSL {
         public static Node colgroup(IEnumerable<Node> inner)
             => new TagNode("colgroup", inner.ToArray());
 
-        public static Node data(Attribute[] attributes, params Node[] inner)
+        public static Node data(AttributeBase[] attributes, params Node[] inner)
             => new TagNode("data", attributes, inner);
 
         public static Node data(params Node[] inner)
@@ -192,7 +192,7 @@ namespace BlazorDSL {
         public static Node data(IEnumerable<Node> inner)
             => new TagNode("data", inner.ToArray());
 
-        public static Node datalist(Attribute[] attributes, params Node[] inner)
+        public static Node datalist(AttributeBase[] attributes, params Node[] inner)
             => new TagNode("datalist", attributes, inner);
 
         public static Node datalist(params Node[] inner)
@@ -201,7 +201,7 @@ namespace BlazorDSL {
         public static Node datalist(IEnumerable<Node> inner)
             => new TagNode("datalist", inner.ToArray());
 
-        public static Node dd(Attribute[] attributes, params Node[] inner)
+        public static Node dd(AttributeBase[] attributes, params Node[] inner)
             => new TagNode("dd", attributes, inner);
 
         public static Node dd(params Node[] inner)
@@ -210,7 +210,7 @@ namespace BlazorDSL {
         public static Node dd(IEnumerable<Node> inner)
             => new TagNode("dd", inner.ToArray());
 
-        public static Node del(Attribute[] attributes, params Node[] inner)
+        public static Node del(AttributeBase[] attributes, params Node[] inner)
             => new TagNode("del", attributes, inner);
 
         public static Node del(params Node[] inner)
@@ -219,7 +219,7 @@ namespace BlazorDSL {
         public static Node del(IEnumerable<Node> inner)
             => new TagNode("del", inner.ToArray());
 
-        public static Node details(Attribute[] attributes, params Node[] inner)
+        public static Node details(AttributeBase[] attributes, params Node[] inner)
             => new TagNode("details", attributes, inner);
 
         public static Node details(params Node[] inner)
@@ -228,7 +228,7 @@ namespace BlazorDSL {
         public static Node details(IEnumerable<Node> inner)
             => new TagNode("details", inner.ToArray());
 
-        public static Node dfn(Attribute[] attributes, params Node[] inner)
+        public static Node dfn(AttributeBase[] attributes, params Node[] inner)
             => new TagNode("dfn", attributes, inner);
 
         public static Node dfn(params Node[] inner)
@@ -237,7 +237,7 @@ namespace BlazorDSL {
         public static Node dfn(IEnumerable<Node> inner)
             => new TagNode("dfn", inner.ToArray());
 
-        public static Node dialog(Attribute[] attributes, params Node[] inner)
+        public static Node dialog(AttributeBase[] attributes, params Node[] inner)
             => new TagNode("dialog", attributes, inner);
 
         public static Node dialog(params Node[] inner)
@@ -246,7 +246,7 @@ namespace BlazorDSL {
         public static Node dialog(IEnumerable<Node> inner)
             => new TagNode("dialog", inner.ToArray());
 
-        public static Node div(Attribute[] attributes, params Node[] inner)
+        public static Node div(AttributeBase[] attributes, params Node[] inner)
             => new TagNode("div", attributes, inner);
 
         public static Node div(params Node[] inner)
@@ -255,13 +255,13 @@ namespace BlazorDSL {
         public static Node div(IEnumerable<Node> inner)
             => new TagNode("div", inner.ToArray());
 
-        public static Node div(Attribute[] attributes, string text)
+        public static Node div(AttributeBase[] attributes, string text)
             => new TagNode("div", attributes, Html.text(text));
 
         public static Node div(string text)
             => new TagNode("div", Html.text(text));
 
-        public static Node dl(Attribute[] attributes, params Node[] inner)
+        public static Node dl(AttributeBase[] attributes, params Node[] inner)
             => new TagNode("dl", attributes, inner);
 
         public static Node dl(params Node[] inner)
@@ -270,7 +270,7 @@ namespace BlazorDSL {
         public static Node dl(IEnumerable<Node> inner)
             => new TagNode("dl", inner.ToArray());
 
-        public static Node dt(Attribute[] attributes, params Node[] inner)
+        public static Node dt(AttributeBase[] attributes, params Node[] inner)
             => new TagNode("dt", attributes, inner);
 
         public static Node dt(params Node[] inner)
@@ -279,7 +279,7 @@ namespace BlazorDSL {
         public static Node dt(IEnumerable<Node> inner)
             => new TagNode("dt", inner.ToArray());
 
-        public static Node em(Attribute[] attributes, params Node[] inner)
+        public static Node em(AttributeBase[] attributes, params Node[] inner)
             => new TagNode("em", attributes, inner);
 
         public static Node em(params Node[] inner)
@@ -288,10 +288,10 @@ namespace BlazorDSL {
         public static Node em(IEnumerable<Node> inner)
             => new TagNode("em", inner.ToArray());
 
-        public static Node embed(Attribute[] attributes)
+        public static Node embed(params AttributeBase[] attributes)
             => new TagNode("embed", attributes);
 
-        public static Node fieldset(Attribute[] attributes, params Node[] inner)
+        public static Node fieldset(AttributeBase[] attributes, params Node[] inner)
             => new TagNode("fieldset", attributes, inner);
 
         public static Node fieldset(params Node[] inner)
@@ -300,7 +300,7 @@ namespace BlazorDSL {
         public static Node fieldset(IEnumerable<Node> inner)
             => new TagNode("fieldset", inner.ToArray());
 
-        public static Node figcaption(Attribute[] attributes, params Node[] inner)
+        public static Node figcaption(AttributeBase[] attributes, params Node[] inner)
             => new TagNode("figcaption", attributes, inner);
 
         public static Node figcaption(params Node[] inner)
@@ -309,7 +309,7 @@ namespace BlazorDSL {
         public static Node figcaption(IEnumerable<Node> inner)
             => new TagNode("figcaption", inner.ToArray());
 
-        public static Node figure(Attribute[] attributes, params Node[] inner)
+        public static Node figure(AttributeBase[] attributes, params Node[] inner)
             => new TagNode("figure", attributes, inner);
 
         public static Node figure(params Node[] inner)
@@ -318,7 +318,7 @@ namespace BlazorDSL {
         public static Node figure(IEnumerable<Node> inner)
             => new TagNode("figure", inner.ToArray());
 
-        public static Node footer(Attribute[] attributes, params Node[] inner)
+        public static Node footer(AttributeBase[] attributes, params Node[] inner)
             => new TagNode("footer", attributes, inner);
 
         public static Node footer(params Node[] inner)
@@ -327,7 +327,7 @@ namespace BlazorDSL {
         public static Node footer(IEnumerable<Node> inner)
             => new TagNode("footer", inner.ToArray());
 
-        public static Node form(Attribute[] attributes, params Node[] inner)
+        public static Node form(AttributeBase[] attributes, params Node[] inner)
             => new TagNode("form", attributes, inner);
 
         public static Node form(params Node[] inner)
@@ -336,7 +336,7 @@ namespace BlazorDSL {
         public static Node form(IEnumerable<Node> inner)
             => new TagNode("form", inner.ToArray());
 
-        public static Node h1(Attribute[] attributes, params Node[] inner)
+        public static Node h1(AttributeBase[] attributes, params Node[] inner)
             => new TagNode("h1", attributes, inner);
 
         public static Node h1(params Node[] inner)
@@ -345,13 +345,13 @@ namespace BlazorDSL {
         public static Node h1(IEnumerable<Node> inner)
             => new TagNode("h1", inner.ToArray());
 
-        public static Node h1(Attribute[] attributes, string text)
+        public static Node h1(AttributeBase[] attributes, string text)
             => new TagNode("h1", attributes, Html.text(text));
 
         public static Node h1(string text)
             => new TagNode("h1", Html.text(text));
 
-        public static Node h2(Attribute[] attributes, params Node[] inner)
+        public static Node h2(AttributeBase[] attributes, params Node[] inner)
             => new TagNode("h2", attributes, inner);
 
         public static Node h2(params Node[] inner)
@@ -360,13 +360,13 @@ namespace BlazorDSL {
         public static Node h2(IEnumerable<Node> inner)
             => new TagNode("h2", inner.ToArray());
 
-        public static Node h2(Attribute[] attributes, string text)
+        public static Node h2(AttributeBase[] attributes, string text)
             => new TagNode("h2", attributes, Html.text(text));
 
         public static Node h2(string text)
             => new TagNode("h2", Html.text(text));
 
-        public static Node h3(Attribute[] attributes, params Node[] inner)
+        public static Node h3(AttributeBase[] attributes, params Node[] inner)
             => new TagNode("h3", attributes, inner);
 
         public static Node h3(params Node[] inner)
@@ -375,13 +375,13 @@ namespace BlazorDSL {
         public static Node h3(IEnumerable<Node> inner)
             => new TagNode("h3", inner.ToArray());
 
-        public static Node h3(Attribute[] attributes, string text)
+        public static Node h3(AttributeBase[] attributes, string text)
             => new TagNode("h3", attributes, Html.text(text));
 
         public static Node h3(string text)
             => new TagNode("h3", Html.text(text));
 
-        public static Node h4(Attribute[] attributes, params Node[] inner)
+        public static Node h4(AttributeBase[] attributes, params Node[] inner)
             => new TagNode("h4", attributes, inner);
 
         public static Node h4(params Node[] inner)
@@ -390,13 +390,13 @@ namespace BlazorDSL {
         public static Node h4(IEnumerable<Node> inner)
             => new TagNode("h4", inner.ToArray());
 
-        public static Node h4(Attribute[] attributes, string text)
+        public static Node h4(AttributeBase[] attributes, string text)
             => new TagNode("h4", attributes, Html.text(text));
 
         public static Node h4(string text)
             => new TagNode("h4", Html.text(text));
 
-        public static Node h5(Attribute[] attributes, params Node[] inner)
+        public static Node h5(AttributeBase[] attributes, params Node[] inner)
             => new TagNode("h5", attributes, inner);
 
         public static Node h5(params Node[] inner)
@@ -405,13 +405,13 @@ namespace BlazorDSL {
         public static Node h5(IEnumerable<Node> inner)
             => new TagNode("h5", inner.ToArray());
 
-        public static Node h5(Attribute[] attributes, string text)
+        public static Node h5(AttributeBase[] attributes, string text)
             => new TagNode("h5", attributes, Html.text(text));
 
         public static Node h5(string text)
             => new TagNode("h5", Html.text(text));
 
-        public static Node h6(Attribute[] attributes, params Node[] inner)
+        public static Node h6(AttributeBase[] attributes, params Node[] inner)
             => new TagNode("h6", attributes, inner);
 
         public static Node h6(params Node[] inner)
@@ -420,13 +420,13 @@ namespace BlazorDSL {
         public static Node h6(IEnumerable<Node> inner)
             => new TagNode("h6", inner.ToArray());
 
-        public static Node h6(Attribute[] attributes, string text)
+        public static Node h6(AttributeBase[] attributes, string text)
             => new TagNode("h6", attributes, Html.text(text));
 
         public static Node h6(string text)
             => new TagNode("h6", Html.text(text));
 
-        public static Node head(Attribute[] attributes, params Node[] inner)
+        public static Node head(AttributeBase[] attributes, params Node[] inner)
             => new TagNode("head", attributes, inner);
 
         public static Node head(params Node[] inner)
@@ -435,7 +435,7 @@ namespace BlazorDSL {
         public static Node head(IEnumerable<Node> inner)
             => new TagNode("head", inner.ToArray());
 
-        public static Node header(Attribute[] attributes, params Node[] inner)
+        public static Node header(AttributeBase[] attributes, params Node[] inner)
             => new TagNode("header", attributes, inner);
 
         public static Node header(params Node[] inner)
@@ -444,7 +444,7 @@ namespace BlazorDSL {
         public static Node header(IEnumerable<Node> inner)
             => new TagNode("header", inner.ToArray());
 
-        public static Node hgroup(Attribute[] attributes, params Node[] inner)
+        public static Node hgroup(AttributeBase[] attributes, params Node[] inner)
             => new TagNode("hgroup", attributes, inner);
 
         public static Node hgroup(params Node[] inner)
@@ -453,10 +453,10 @@ namespace BlazorDSL {
         public static Node hgroup(IEnumerable<Node> inner)
             => new TagNode("hgroup", inner.ToArray());
 
-        public static Node hr(Attribute[] attributes)
+        public static Node hr(params AttributeBase[] attributes)
             => new TagNode("hr", attributes);
 
-        public static Node html(Attribute[] attributes, params Node[] inner)
+        public static Node html(AttributeBase[] attributes, params Node[] inner)
             => new TagNode("html", attributes, inner);
 
         public static Node html(params Node[] inner)
@@ -465,7 +465,7 @@ namespace BlazorDSL {
         public static Node html(IEnumerable<Node> inner)
             => new TagNode("html", inner.ToArray());
 
-        public static Node i(Attribute[] attributes, params Node[] inner)
+        public static Node i(AttributeBase[] attributes, params Node[] inner)
             => new TagNode("i", attributes, inner);
 
         public static Node i(params Node[] inner)
@@ -474,13 +474,13 @@ namespace BlazorDSL {
         public static Node i(IEnumerable<Node> inner)
             => new TagNode("i", inner.ToArray());
 
-        public static Node i(Attribute[] attributes, string text)
+        public static Node i(AttributeBase[] attributes, string text)
             => new TagNode("i", attributes, Html.text(text));
 
         public static Node i(string text)
             => new TagNode("i", Html.text(text));
 
-        public static Node iframe(Attribute[] attributes, params Node[] inner)
+        public static Node iframe(AttributeBase[] attributes, params Node[] inner)
             => new TagNode("iframe", attributes, inner);
 
         public static Node iframe(params Node[] inner)
@@ -489,13 +489,13 @@ namespace BlazorDSL {
         public static Node iframe(IEnumerable<Node> inner)
             => new TagNode("iframe", inner.ToArray());
 
-        public static Node img(Attribute[] attributes)
+        public static Node img(params AttributeBase[] attributes)
             => new TagNode("img", attributes);
 
-        public static Node input(Attribute[] attributes)
+        public static Node input(params AttributeBase[] attributes)
             => new TagNode("input", attributes);
 
-        public static Node ins(Attribute[] attributes, params Node[] inner)
+        public static Node ins(AttributeBase[] attributes, params Node[] inner)
             => new TagNode("ins", attributes, inner);
 
         public static Node ins(params Node[] inner)
@@ -504,7 +504,7 @@ namespace BlazorDSL {
         public static Node ins(IEnumerable<Node> inner)
             => new TagNode("ins", inner.ToArray());
 
-        public static Node kbd(Attribute[] attributes, params Node[] inner)
+        public static Node kbd(AttributeBase[] attributes, params Node[] inner)
             => new TagNode("kbd", attributes, inner);
 
         public static Node kbd(params Node[] inner)
@@ -513,7 +513,7 @@ namespace BlazorDSL {
         public static Node kbd(IEnumerable<Node> inner)
             => new TagNode("kbd", inner.ToArray());
 
-        public static Node label(Attribute[] attributes, params Node[] inner)
+        public static Node label(AttributeBase[] attributes, params Node[] inner)
             => new TagNode("label", attributes, inner);
 
         public static Node label(params Node[] inner)
@@ -522,7 +522,7 @@ namespace BlazorDSL {
         public static Node label(IEnumerable<Node> inner)
             => new TagNode("label", inner.ToArray());
 
-        public static Node legend(Attribute[] attributes, params Node[] inner)
+        public static Node legend(AttributeBase[] attributes, params Node[] inner)
             => new TagNode("legend", attributes, inner);
 
         public static Node legend(params Node[] inner)
@@ -531,7 +531,7 @@ namespace BlazorDSL {
         public static Node legend(IEnumerable<Node> inner)
             => new TagNode("legend", inner.ToArray());
 
-        public static Node li(Attribute[] attributes, params Node[] inner)
+        public static Node li(AttributeBase[] attributes, params Node[] inner)
             => new TagNode("li", attributes, inner);
 
         public static Node li(params Node[] inner)
@@ -540,16 +540,16 @@ namespace BlazorDSL {
         public static Node li(IEnumerable<Node> inner)
             => new TagNode("li", inner.ToArray());
 
-        public static Node li(Attribute[] attributes, string text)
+        public static Node li(AttributeBase[] attributes, string text)
             => new TagNode("li", attributes, Html.text(text));
 
         public static Node li(string text)
             => new TagNode("li", Html.text(text));
 
-        public static Node link(Attribute[] attributes)
+        public static Node link(params AttributeBase[] attributes)
             => new TagNode("link", attributes);
 
-        public static Node main(Attribute[] attributes, params Node[] inner)
+        public static Node main(AttributeBase[] attributes, params Node[] inner)
             => new TagNode("main", attributes, inner);
 
         public static Node main(params Node[] inner)
@@ -558,7 +558,7 @@ namespace BlazorDSL {
         public static Node main(IEnumerable<Node> inner)
             => new TagNode("main", inner.ToArray());
 
-        public static Node map(Attribute[] attributes, params Node[] inner)
+        public static Node map(AttributeBase[] attributes, params Node[] inner)
             => new TagNode("map", attributes, inner);
 
         public static Node map(params Node[] inner)
@@ -567,7 +567,7 @@ namespace BlazorDSL {
         public static Node map(IEnumerable<Node> inner)
             => new TagNode("map", inner.ToArray());
 
-        public static Node mark(Attribute[] attributes, params Node[] inner)
+        public static Node mark(AttributeBase[] attributes, params Node[] inner)
             => new TagNode("mark", attributes, inner);
 
         public static Node mark(params Node[] inner)
@@ -576,7 +576,7 @@ namespace BlazorDSL {
         public static Node mark(IEnumerable<Node> inner)
             => new TagNode("mark", inner.ToArray());
 
-        public static Node menu(Attribute[] attributes, params Node[] inner)
+        public static Node menu(AttributeBase[] attributes, params Node[] inner)
             => new TagNode("menu", attributes, inner);
 
         public static Node menu(params Node[] inner)
@@ -585,10 +585,10 @@ namespace BlazorDSL {
         public static Node menu(IEnumerable<Node> inner)
             => new TagNode("menu", inner.ToArray());
 
-        public static Node meta(Attribute[] attributes)
+        public static Node meta(params AttributeBase[] attributes)
             => new TagNode("meta", attributes);
 
-        public static Node meter(Attribute[] attributes, params Node[] inner)
+        public static Node meter(AttributeBase[] attributes, params Node[] inner)
             => new TagNode("meter", attributes, inner);
 
         public static Node meter(params Node[] inner)
@@ -597,7 +597,7 @@ namespace BlazorDSL {
         public static Node meter(IEnumerable<Node> inner)
             => new TagNode("meter", inner.ToArray());
 
-        public static Node nav(Attribute[] attributes, params Node[] inner)
+        public static Node nav(AttributeBase[] attributes, params Node[] inner)
             => new TagNode("nav", attributes, inner);
 
         public static Node nav(params Node[] inner)
@@ -606,7 +606,7 @@ namespace BlazorDSL {
         public static Node nav(IEnumerable<Node> inner)
             => new TagNode("nav", inner.ToArray());
 
-        public static Node noscript(Attribute[] attributes, params Node[] inner)
+        public static Node noscript(AttributeBase[] attributes, params Node[] inner)
             => new TagNode("noscript", attributes, inner);
 
         public static Node noscript(params Node[] inner)
@@ -615,7 +615,7 @@ namespace BlazorDSL {
         public static Node noscript(IEnumerable<Node> inner)
             => new TagNode("noscript", inner.ToArray());
 
-        public static Node @object(Attribute[] attributes, params Node[] inner)
+        public static Node @object(AttributeBase[] attributes, params Node[] inner)
             => new TagNode("object", attributes, inner);
 
         public static Node @object(params Node[] inner)
@@ -624,7 +624,7 @@ namespace BlazorDSL {
         public static Node @object(IEnumerable<Node> inner)
             => new TagNode("object", inner.ToArray());
 
-        public static Node ol(Attribute[] attributes, params Node[] inner)
+        public static Node ol(AttributeBase[] attributes, params Node[] inner)
             => new TagNode("ol", attributes, inner);
 
         public static Node ol(params Node[] inner)
@@ -633,7 +633,7 @@ namespace BlazorDSL {
         public static Node ol(IEnumerable<Node> inner)
             => new TagNode("ol", inner.ToArray());
 
-        public static Node optgroup(Attribute[] attributes, params Node[] inner)
+        public static Node optgroup(AttributeBase[] attributes, params Node[] inner)
             => new TagNode("optgroup", attributes, inner);
 
         public static Node optgroup(params Node[] inner)
@@ -642,7 +642,7 @@ namespace BlazorDSL {
         public static Node optgroup(IEnumerable<Node> inner)
             => new TagNode("optgroup", inner.ToArray());
 
-        public static Node option(Attribute[] attributes, params Node[] inner)
+        public static Node option(AttributeBase[] attributes, params Node[] inner)
             => new TagNode("option", attributes, inner);
 
         public static Node option(params Node[] inner)
@@ -651,7 +651,7 @@ namespace BlazorDSL {
         public static Node option(IEnumerable<Node> inner)
             => new TagNode("option", inner.ToArray());
 
-        public static Node output(Attribute[] attributes, params Node[] inner)
+        public static Node output(AttributeBase[] attributes, params Node[] inner)
             => new TagNode("output", attributes, inner);
 
         public static Node output(params Node[] inner)
@@ -660,7 +660,7 @@ namespace BlazorDSL {
         public static Node output(IEnumerable<Node> inner)
             => new TagNode("output", inner.ToArray());
 
-        public static Node p(Attribute[] attributes, params Node[] inner)
+        public static Node p(AttributeBase[] attributes, params Node[] inner)
             => new TagNode("p", attributes, inner);
 
         public static Node p(params Node[] inner)
@@ -669,16 +669,16 @@ namespace BlazorDSL {
         public static Node p(IEnumerable<Node> inner)
             => new TagNode("p", inner.ToArray());
 
-        public static Node p(Attribute[] attributes, string text)
+        public static Node p(AttributeBase[] attributes, string text)
             => new TagNode("p", attributes, Html.text(text));
 
         public static Node p(string text)
             => new TagNode("p", Html.text(text));
 
-        public static Node param(Attribute[] attributes)
+        public static Node param(params AttributeBase[] attributes)
             => new TagNode("param", attributes);
 
-        public static Node picture(Attribute[] attributes, params Node[] inner)
+        public static Node picture(AttributeBase[] attributes, params Node[] inner)
             => new TagNode("picture", attributes, inner);
 
         public static Node picture(params Node[] inner)
@@ -687,7 +687,7 @@ namespace BlazorDSL {
         public static Node picture(IEnumerable<Node> inner)
             => new TagNode("picture", inner.ToArray());
 
-        public static Node pre(Attribute[] attributes, params Node[] inner)
+        public static Node pre(AttributeBase[] attributes, params Node[] inner)
             => new TagNode("pre", attributes, inner);
 
         public static Node pre(params Node[] inner)
@@ -696,7 +696,7 @@ namespace BlazorDSL {
         public static Node pre(IEnumerable<Node> inner)
             => new TagNode("pre", inner.ToArray());
 
-        public static Node progress(Attribute[] attributes, params Node[] inner)
+        public static Node progress(AttributeBase[] attributes, params Node[] inner)
             => new TagNode("progress", attributes, inner);
 
         public static Node progress(params Node[] inner)
@@ -705,7 +705,7 @@ namespace BlazorDSL {
         public static Node progress(IEnumerable<Node> inner)
             => new TagNode("progress", inner.ToArray());
 
-        public static Node q(Attribute[] attributes, params Node[] inner)
+        public static Node q(AttributeBase[] attributes, params Node[] inner)
             => new TagNode("q", attributes, inner);
 
         public static Node q(params Node[] inner)
@@ -714,7 +714,7 @@ namespace BlazorDSL {
         public static Node q(IEnumerable<Node> inner)
             => new TagNode("q", inner.ToArray());
 
-        public static Node rp(Attribute[] attributes, params Node[] inner)
+        public static Node rp(AttributeBase[] attributes, params Node[] inner)
             => new TagNode("rp", attributes, inner);
 
         public static Node rp(params Node[] inner)
@@ -723,7 +723,7 @@ namespace BlazorDSL {
         public static Node rp(IEnumerable<Node> inner)
             => new TagNode("rp", inner.ToArray());
 
-        public static Node rt(Attribute[] attributes, params Node[] inner)
+        public static Node rt(AttributeBase[] attributes, params Node[] inner)
             => new TagNode("rt", attributes, inner);
 
         public static Node rt(params Node[] inner)
@@ -732,7 +732,7 @@ namespace BlazorDSL {
         public static Node rt(IEnumerable<Node> inner)
             => new TagNode("rt", inner.ToArray());
 
-        public static Node ruby(Attribute[] attributes, params Node[] inner)
+        public static Node ruby(AttributeBase[] attributes, params Node[] inner)
             => new TagNode("ruby", attributes, inner);
 
         public static Node ruby(params Node[] inner)
@@ -741,7 +741,7 @@ namespace BlazorDSL {
         public static Node ruby(IEnumerable<Node> inner)
             => new TagNode("ruby", inner.ToArray());
 
-        public static Node s(Attribute[] attributes, params Node[] inner)
+        public static Node s(AttributeBase[] attributes, params Node[] inner)
             => new TagNode("s", attributes, inner);
 
         public static Node s(params Node[] inner)
@@ -750,7 +750,7 @@ namespace BlazorDSL {
         public static Node s(IEnumerable<Node> inner)
             => new TagNode("s", inner.ToArray());
 
-        public static Node samp(Attribute[] attributes, params Node[] inner)
+        public static Node samp(AttributeBase[] attributes, params Node[] inner)
             => new TagNode("samp", attributes, inner);
 
         public static Node samp(params Node[] inner)
@@ -759,7 +759,7 @@ namespace BlazorDSL {
         public static Node samp(IEnumerable<Node> inner)
             => new TagNode("samp", inner.ToArray());
 
-        public static Node script(Attribute[] attributes, params Node[] inner)
+        public static Node script(AttributeBase[] attributes, params Node[] inner)
             => new TagNode("script", attributes, inner);
 
         public static Node script(params Node[] inner)
@@ -768,7 +768,7 @@ namespace BlazorDSL {
         public static Node script(IEnumerable<Node> inner)
             => new TagNode("script", inner.ToArray());
 
-        public static Node section(Attribute[] attributes, params Node[] inner)
+        public static Node section(AttributeBase[] attributes, params Node[] inner)
             => new TagNode("section", attributes, inner);
 
         public static Node section(params Node[] inner)
@@ -777,7 +777,7 @@ namespace BlazorDSL {
         public static Node section(IEnumerable<Node> inner)
             => new TagNode("section", inner.ToArray());
 
-        public static Node select(Attribute[] attributes, params Node[] inner)
+        public static Node select(AttributeBase[] attributes, params Node[] inner)
             => new TagNode("select", attributes, inner);
 
         public static Node select(params Node[] inner)
@@ -786,7 +786,7 @@ namespace BlazorDSL {
         public static Node select(IEnumerable<Node> inner)
             => new TagNode("select", inner.ToArray());
 
-        public static Node slot(Attribute[] attributes, params Node[] inner)
+        public static Node slot(AttributeBase[] attributes, params Node[] inner)
             => new TagNode("slot", attributes, inner);
 
         public static Node slot(params Node[] inner)
@@ -795,7 +795,7 @@ namespace BlazorDSL {
         public static Node slot(IEnumerable<Node> inner)
             => new TagNode("slot", inner.ToArray());
 
-        public static Node small(Attribute[] attributes, params Node[] inner)
+        public static Node small(AttributeBase[] attributes, params Node[] inner)
             => new TagNode("small", attributes, inner);
 
         public static Node small(params Node[] inner)
@@ -804,10 +804,10 @@ namespace BlazorDSL {
         public static Node small(IEnumerable<Node> inner)
             => new TagNode("small", inner.ToArray());
 
-        public static Node source(Attribute[] attributes)
+        public static Node source(params AttributeBase[] attributes)
             => new TagNode("source", attributes);
 
-        public static Node span(Attribute[] attributes, params Node[] inner)
+        public static Node span(AttributeBase[] attributes, params Node[] inner)
             => new TagNode("span", attributes, inner);
 
         public static Node span(params Node[] inner)
@@ -816,7 +816,7 @@ namespace BlazorDSL {
         public static Node span(IEnumerable<Node> inner)
             => new TagNode("span", inner.ToArray());
 
-        public static Node strong(Attribute[] attributes, params Node[] inner)
+        public static Node strong(AttributeBase[] attributes, params Node[] inner)
             => new TagNode("strong", attributes, inner);
 
         public static Node strong(params Node[] inner)
@@ -825,13 +825,13 @@ namespace BlazorDSL {
         public static Node strong(IEnumerable<Node> inner)
             => new TagNode("strong", inner.ToArray());
 
-        public static Node strong(Attribute[] attributes, string text)
+        public static Node strong(AttributeBase[] attributes, string text)
             => new TagNode("strong", attributes, Html.text(text));
 
         public static Node strong(string text)
             => new TagNode("strong", Html.text(text));
 
-        public static Node style(Attribute[] attributes, params Node[] inner)
+        public static Node style(AttributeBase[] attributes, params Node[] inner)
             => new TagNode("style", attributes, inner);
 
         public static Node style(params Node[] inner)
@@ -840,7 +840,7 @@ namespace BlazorDSL {
         public static Node style(IEnumerable<Node> inner)
             => new TagNode("style", inner.ToArray());
 
-        public static Node sub(Attribute[] attributes, params Node[] inner)
+        public static Node sub(AttributeBase[] attributes, params Node[] inner)
             => new TagNode("sub", attributes, inner);
 
         public static Node sub(params Node[] inner)
@@ -849,7 +849,7 @@ namespace BlazorDSL {
         public static Node sub(IEnumerable<Node> inner)
             => new TagNode("sub", inner.ToArray());
 
-        public static Node summary(Attribute[] attributes, params Node[] inner)
+        public static Node summary(AttributeBase[] attributes, params Node[] inner)
             => new TagNode("summary", attributes, inner);
 
         public static Node summary(params Node[] inner)
@@ -858,7 +858,7 @@ namespace BlazorDSL {
         public static Node summary(IEnumerable<Node> inner)
             => new TagNode("summary", inner.ToArray());
 
-        public static Node sup(Attribute[] attributes, params Node[] inner)
+        public static Node sup(AttributeBase[] attributes, params Node[] inner)
             => new TagNode("sup", attributes, inner);
 
         public static Node sup(params Node[] inner)
@@ -867,7 +867,7 @@ namespace BlazorDSL {
         public static Node sup(IEnumerable<Node> inner)
             => new TagNode("sup", inner.ToArray());
 
-        public static Node table(Attribute[] attributes, params Node[] inner)
+        public static Node table(AttributeBase[] attributes, params Node[] inner)
             => new TagNode("table", attributes, inner);
 
         public static Node table(params Node[] inner)
@@ -876,7 +876,7 @@ namespace BlazorDSL {
         public static Node table(IEnumerable<Node> inner)
             => new TagNode("table", inner.ToArray());
 
-        public static Node tbody(Attribute[] attributes, params Node[] inner)
+        public static Node tbody(AttributeBase[] attributes, params Node[] inner)
             => new TagNode("tbody", attributes, inner);
 
         public static Node tbody(params Node[] inner)
@@ -885,7 +885,7 @@ namespace BlazorDSL {
         public static Node tbody(IEnumerable<Node> inner)
             => new TagNode("tbody", inner.ToArray());
 
-        public static Node td(Attribute[] attributes, params Node[] inner)
+        public static Node td(AttributeBase[] attributes, params Node[] inner)
             => new TagNode("td", attributes, inner);
 
         public static Node td(params Node[] inner)
@@ -894,13 +894,13 @@ namespace BlazorDSL {
         public static Node td(IEnumerable<Node> inner)
             => new TagNode("td", inner.ToArray());
 
-        public static Node td(Attribute[] attributes, string text)
+        public static Node td(AttributeBase[] attributes, string text)
             => new TagNode("td", attributes, Html.text(text));
 
         public static Node td(string text)
             => new TagNode("td", Html.text(text));
 
-        public static Node template(Attribute[] attributes, params Node[] inner)
+        public static Node template(AttributeBase[] attributes, params Node[] inner)
             => new TagNode("template", attributes, inner);
 
         public static Node template(params Node[] inner)
@@ -909,7 +909,7 @@ namespace BlazorDSL {
         public static Node template(IEnumerable<Node> inner)
             => new TagNode("template", inner.ToArray());
 
-        public static Node textarea(Attribute[] attributes, params Node[] inner)
+        public static Node textarea(AttributeBase[] attributes, params Node[] inner)
             => new TagNode("textarea", attributes, inner);
 
         public static Node textarea(params Node[] inner)
@@ -918,7 +918,7 @@ namespace BlazorDSL {
         public static Node textarea(IEnumerable<Node> inner)
             => new TagNode("textarea", inner.ToArray());
 
-        public static Node tfoot(Attribute[] attributes, params Node[] inner)
+        public static Node tfoot(AttributeBase[] attributes, params Node[] inner)
             => new TagNode("tfoot", attributes, inner);
 
         public static Node tfoot(params Node[] inner)
@@ -927,7 +927,7 @@ namespace BlazorDSL {
         public static Node tfoot(IEnumerable<Node> inner)
             => new TagNode("tfoot", inner.ToArray());
 
-        public static Node th(Attribute[] attributes, params Node[] inner)
+        public static Node th(AttributeBase[] attributes, params Node[] inner)
             => new TagNode("th", attributes, inner);
 
         public static Node th(params Node[] inner)
@@ -936,13 +936,13 @@ namespace BlazorDSL {
         public static Node th(IEnumerable<Node> inner)
             => new TagNode("th", inner.ToArray());
 
-        public static Node th(Attribute[] attributes, string text)
+        public static Node th(AttributeBase[] attributes, string text)
             => new TagNode("th", attributes, Html.text(text));
 
         public static Node th(string text)
             => new TagNode("th", Html.text(text));
 
-        public static Node thead(Attribute[] attributes, params Node[] inner)
+        public static Node thead(AttributeBase[] attributes, params Node[] inner)
             => new TagNode("thead", attributes, inner);
 
         public static Node thead(params Node[] inner)
@@ -951,7 +951,7 @@ namespace BlazorDSL {
         public static Node thead(IEnumerable<Node> inner)
             => new TagNode("thead", inner.ToArray());
 
-        public static Node time(Attribute[] attributes, params Node[] inner)
+        public static Node time(AttributeBase[] attributes, params Node[] inner)
             => new TagNode("time", attributes, inner);
 
         public static Node time(params Node[] inner)
@@ -960,7 +960,7 @@ namespace BlazorDSL {
         public static Node time(IEnumerable<Node> inner)
             => new TagNode("time", inner.ToArray());
 
-        public static Node title(Attribute[] attributes, params Node[] inner)
+        public static Node title(AttributeBase[] attributes, params Node[] inner)
             => new TagNode("title", attributes, inner);
 
         public static Node title(params Node[] inner)
@@ -969,7 +969,7 @@ namespace BlazorDSL {
         public static Node title(IEnumerable<Node> inner)
             => new TagNode("title", inner.ToArray());
 
-        public static Node tr(Attribute[] attributes, params Node[] inner)
+        public static Node tr(AttributeBase[] attributes, params Node[] inner)
             => new TagNode("tr", attributes, inner);
 
         public static Node tr(params Node[] inner)
@@ -978,10 +978,10 @@ namespace BlazorDSL {
         public static Node tr(IEnumerable<Node> inner)
             => new TagNode("tr", inner.ToArray());
 
-        public static Node track(Attribute[] attributes)
+        public static Node track(params AttributeBase[] attributes)
             => new TagNode("track", attributes);
 
-        public static Node u(Attribute[] attributes, params Node[] inner)
+        public static Node u(AttributeBase[] attributes, params Node[] inner)
             => new TagNode("u", attributes, inner);
 
         public static Node u(params Node[] inner)
@@ -990,7 +990,7 @@ namespace BlazorDSL {
         public static Node u(IEnumerable<Node> inner)
             => new TagNode("u", inner.ToArray());
 
-        public static Node ul(Attribute[] attributes, params Node[] inner)
+        public static Node ul(AttributeBase[] attributes, params Node[] inner)
             => new TagNode("ul", attributes, inner);
 
         public static Node ul(params Node[] inner)
@@ -999,7 +999,7 @@ namespace BlazorDSL {
         public static Node ul(IEnumerable<Node> inner)
             => new TagNode("ul", inner.ToArray());
 
-        public static Node var(Attribute[] attributes, params Node[] inner)
+        public static Node var(AttributeBase[] attributes, params Node[] inner)
             => new TagNode("var", attributes, inner);
 
         public static Node var(params Node[] inner)
@@ -1008,7 +1008,7 @@ namespace BlazorDSL {
         public static Node var(IEnumerable<Node> inner)
             => new TagNode("var", inner.ToArray());
 
-        public static Node video(Attribute[] attributes, params Node[] inner)
+        public static Node video(AttributeBase[] attributes, params Node[] inner)
             => new TagNode("video", attributes, inner);
 
         public static Node video(params Node[] inner)
@@ -1017,7 +1017,7 @@ namespace BlazorDSL {
         public static Node video(IEnumerable<Node> inner)
             => new TagNode("video", inner.ToArray());
 
-        public static Node wbr(Attribute[] attributes)
+        public static Node wbr(params AttributeBase[] attributes)
             => new TagNode("wbr", attributes);
     }
 }

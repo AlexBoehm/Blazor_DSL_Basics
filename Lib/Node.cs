@@ -4,7 +4,7 @@ using System;
 namespace BlazorDSL {
     public abstract class Node {
         protected static Node[] _emptyNodes = new Node[0];
-        protected static Attribute[] _emptyAttributes = new Attribute[0];
+        protected static AttributeBase[] _emptyAttributes = new AttributeBase[0];
     }
 
     public class TextNode : Node {
@@ -18,7 +18,7 @@ namespace BlazorDSL {
     public class TagNode : Node {
         public string Tag { get; private set; }
         public Node[] Inner { get; private set; }
-        public Attribute[] Attributes { get; private set; }
+        public AttributeBase[] Attributes { get; private set; }
 
         public TagNode(string tag) {
             Tag = tag;
@@ -26,7 +26,7 @@ namespace BlazorDSL {
             Attributes = _emptyAttributes;
         }
 
-        public TagNode(string tag, Attribute[] attributes, params Node[] inner) {
+        public TagNode(string tag, AttributeBase[] attributes, params Node[] inner) {
             Tag = tag;
             Inner = inner;
             Attributes = attributes;
@@ -54,14 +54,14 @@ namespace BlazorDSL {
 
     public class ComponentNode : Node {
         public Type Type { get; private set; }
-        public Attribute[] Attributes { get; private set; }
+        public AttributeBase[] Attributes { get; private set; }
 
         public ComponentNode(Type type) {
             Type = type;
             Attributes = _emptyAttributes;
         }
 
-        public ComponentNode(Type type, Attribute[] attributes) {
+        public ComponentNode(Type type, AttributeBase[] attributes) {
             Type = type;
             Attributes = attributes;
         }

@@ -21,20 +21,23 @@ namespace BlazorDSL {
         #endregion
 
         #region Attributes
-        public static Attribute[] attrs(params Attribute[] attributes)
+        public static AttributeBase[] attrs(params AttributeBase[] attributes)
             => attributes;
 
-        public static Attribute attribute(string key, string value)
+        public static AttributeBase attribute(string key, string value)
             => new Attribute(key, value);
 
-        public static Attribute parameter(string name, object value)
+        public static AttributeBase parameter(string name, object value)
             => new Attribute(name, value);
+
+        public static AttributeBase emptyAttribute()
+            => EmptyAttribute.Instance;
 
         #endregion        
 
         #region templateParameter
 
-        public static Attribute templateParameter(string key, params Node[] template)
+        public static AttributeBase templateParameter(string key, params Node[] template)
             => new Attribute(
                  key,
                 (RenderFragment)(
@@ -44,7 +47,7 @@ namespace BlazorDSL {
                 )
             );
 
-        public static Attribute templateParameter(string key, Func<Node> template)
+        public static AttributeBase templateParameter(string key, Func<Node> template)
             => new Attribute(
                  key,
                 (RenderFragment)(
@@ -54,7 +57,7 @@ namespace BlazorDSL {
                 )
             );
 
-        public static Attribute templateParameter<TContext>(string key, Func<TContext, Node> template)
+        public static AttributeBase templateParameter<TContext>(string key, Func<TContext, Node> template)
             => new Attribute(
                 key,
                 (RenderFragment<TContext>)(
@@ -73,15 +76,15 @@ namespace BlazorDSL {
         public static Node Component<TComponent>()
             => new ComponentNode(typeof(TComponent));
 
-        public static Node Component<TComponent>(params Attribute[] parameters)
+        public static Node Component<TComponent>(params AttributeBase[] parameters)
             => new ComponentNode(typeof(TComponent), parameters);
 
-        public static Node Component<TComponent>(Attribute[] parameters, params Node[] childContent)
+        public static Node Component<TComponent>(AttributeBase[] parameters, params Node[] childContent)
             => new ComponentNode(
                 typeof(TComponent),
                 parameters
                     .Concat(
-                        new Attribute[] {
+                        new AttributeBase[] {
                             templateParameter("ChildContent", childContent)
                         }
                     ).ToArray()

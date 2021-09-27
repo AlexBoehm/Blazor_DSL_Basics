@@ -45,7 +45,7 @@ namespace BlazorDSL {
 
             if (!isVoidElement)
                 yield return @$"
-        public static Node {methodName}(Attribute[] attributes, params Node[] inner)
+        public static Node {methodName}(AttributeBase[] attributes, params Node[] inner)
             => new TagNode(""{tag}"", attributes, inner);";
 
             if (!isVoidElement)
@@ -60,12 +60,12 @@ namespace BlazorDSL {
 
             if (isVoidElement)
                 yield return @$"
-        public static Node {methodName}(Attribute[] attributes)
+        public static Node {methodName}(params AttributeBase[] attributes)
             => new TagNode(""{tag}"", attributes);";
 
             if (!isVoidElement && withText)
                 yield return $@"
-        public static Node {methodName}(Attribute[] attributes, string text)
+        public static Node {methodName}(AttributeBase[] attributes, string text)
             => new TagNode(""{tag}"", attributes, Html.text(text));";
 
             if (!isVoidElement && withText)

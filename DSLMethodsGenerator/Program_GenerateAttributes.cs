@@ -47,8 +47,8 @@ namespace BlazorDSL {
                     : attribute;
 
             return @$"
-            public static Attribute {methodName}(string className)
-                => new Attribute(""{attribute}"", className);";
+            public static Attribute {methodName}(string value)
+                => new Attribute(""{attribute}"", value);";
         }
     }
 }

@@ -44,9 +44,23 @@ a, .btn-link {
     z-index: 1000;
 }
 
-    #blazor-error-ui .dismiss {
-        cursor: pointer;
-        position: absolute;
-        right: 0.75rem;
-        top: 0.5rem;
-    }
+#blazor-error-ui .dismiss {
+    cursor: pointer;
+    position: absolute;
+    right: 0.75rem;
+    top: 0.5rem;
+}
+
+.TodoList {
+    list-style: none;    
+}
+
+.TodoList li {
+    display: grid;
+    grid-template-columns: 20px 200px;
+}
+
+.TodoList li input,
+.TodoList li div {
+    align-self: center;
+}

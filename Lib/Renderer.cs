@@ -76,11 +76,15 @@ namespace BlazorDSL {
             return sequenceNumber + 1;
         }
 
-        private static void AddAttributes(int sequenceNumber, RenderTreeBuilder builder, Attribute[] attributes) {
+        private static void AddAttributes(int sequenceNumber, RenderTreeBuilder builder, AttributeBase[] attributes) {
             builder.AddMultipleAttributes(
                 sequenceNumber,
                 from attribute in attributes
-                select new KeyValuePair<string, object>(attribute.Name, attribute.Value)
+                where !(attribute is EmptyAttribute)
+                select attribute switch {
+                    Attribute a => new KeyValuePair<string, object>(a.Name, a.Value),
+                    _ => throw new NotImplementedException("Unknown type " + attribute.GetType())
+                }
             );
         }
     }
