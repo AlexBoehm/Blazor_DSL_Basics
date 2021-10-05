@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using Microsoft.AspNetCore.Components;
 
 namespace BlazorDSL {
     public static class Renderer {
@@ -87,5 +88,9 @@ namespace BlazorDSL {
                 }
             );
         }
+
+        //private static void AddBindAttribute(int sequenceNumber, RenderTreeBuilder builder) {
+        //    builder.AddAttribute(16, "onchange", Microsoft.AspNetCore.Components.EventCallback.Factory.CreateBinder()
+        //}
     }
 }

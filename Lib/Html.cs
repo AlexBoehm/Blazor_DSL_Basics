@@ -93,5 +93,26 @@ namespace BlazorDSL {
 
         public static Node fragment(RenderFragment fragment)
             => new RenderFragmentNode(fragment);
+
+
+        public static class bind {
+            public static class change {
+
+            }
+        }
+    }
+
+    public class ValueWithSetter<TItem> {
+        public TItem Value { get; private set; }
+
+        public ValueWithSetter(TItem value) {
+            Value = value;
+        }
+
+        public Action<TItem> Set => 
+            newValue => Value = newValue;
+
+        public Func<TItem> Get =>
+            () => Value;
     }
 }

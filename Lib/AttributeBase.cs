@@ -19,4 +19,10 @@
         private static EmptyAttribute _instance = new EmptyAttribute();
         public static EmptyAttribute Instance => _instance;
     }
+
+    public class BindAttribute : AttributeBase {
+        public BindAttribute(ValueWithSetter value) {
+
+        }
+    }
 }
