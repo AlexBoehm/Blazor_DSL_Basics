@@ -1,18 +1,33 @@
 ﻿@page "/todo-blazor"
 
-<ul class="TodoList">
-    @foreach (var item in _items) {
-        <li>
-            <input type="checkbox" @bind="item.Done"/>
-            <div>@item.Text</div>
-        </li>
-    }
-</ul>    
+<div class="TodoList">
+    <div>
+        <input type="text" @bind="filterText" @bind:event="oninput" />
+    </div>
 
-<form @onsubmit="AddItem">
-    <input type="text" @bind-value="inputValue" />
-    <button type="submit">Add Todo</button>
-</form>
+    <ul>
+        @foreach (var item in _items.Where(x => x.Text.Contains(filterText, StringComparison.OrdinalIgnoreCase))) {
+            <li>
+                <input type="checkbox" @bind="item.Done"/>
+                <input type="text" @bind="item.Text" style=@(item.Done ? "text-decoration: line-through": "") />
+                <button class="Delete" @onclick="@(() => _items.Remove(item))">x</button>
+            </li>
+        }
+    </ul>
+
+    <form @onsubmit="AddItem">
+        <input type="text" @bind-value="inputText" />
+        <button type="submit">
+            <span class"oi oi-plus" aria-hidden="true">
+                add
+            </span>
+        </button>
+    </form>
+
+    <div class="ButtonBox">
+        <button @onclick="RemoveDoneItems">remove all done</button>
+    </div>
+</div>
 
 @code{
     List<TodoItem> _items = new List<TodoItem> {
@@ -21,14 +36,19 @@
         new TodoItem { Text = "Task 3", Done = false }
     };
 
-    string inputValue { get; set; }
+    string inputText = "";
+    string filterText = "";
 
     void AddItem() {
         _items.Add(new TodoItem {
-            Text = inputValue,
+            Text = inputText,
             Done = false
         });
 
-        inputValue = "";
+        inputText = "";
+    }
+
+    void RemoveDoneItems(){
+        _items.RemoveAll(x => x.Done);
     }
 }
