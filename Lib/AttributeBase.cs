@@ -20,9 +20,11 @@
         public static EmptyAttribute Instance => _instance;
     }
 
-    public class BindAttribute : AttributeBase {
-        public BindAttribute(ValueWithSetter value) {
+    public class MultipleAttributes : AttributeBase {
+        public AttributeBase[] Values { get; private set; }
 
+        public MultipleAttributes(AttributeBase[] attributes) {
+            this.Values = attributes;
         }
     }
 }

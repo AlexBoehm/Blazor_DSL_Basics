@@ -7,9 +7,9 @@ namespace BlazorDSL.Pages {
     [Route("/todo")]
     public partial class TodoPage : WebComponent {
         List<TodoItem> todoItems = new List<TodoItem>() {
-            new TodoItem { Text = "Task 1", Done = new ValueWithSetter<bool>(false) },
-            new TodoItem { Text = "Task 2", Done = new ValueWithSetter<bool>(false) },
-            new TodoItem { Text = "Task 3", Done = new ValueWithSetter<bool>(false) }
+            new TodoItem { Text = "Task 1", Done = true},
+            new TodoItem { Text = "Task 2", Done = false },
+            new TodoItem { Text = "Task 3", Done = false }
         };
 
         protected override Node Render() =>
@@ -18,17 +18,21 @@ namespace BlazorDSL.Pages {
                 select li(
                     input(
                         type("checkbox"),
-                        item.Done.Value ? @checked("checked") : emptyAttribute(),
-                        // onChange(this, e => item.Done.Set(e.Value.ToString() == "checked")),
-                        bindValue(item.Done)
+                        item.Done ? @checked("checked") : emptyAttribute(),
+                        bind.@checked(
+                            this,
+                            item.Done,
+                            nv => item.Done = nv
+                        )
                     ),
-                    div(item.Text)
+                    div(item.Text),
+                    div(item.Done ? "(Done)" : "")
                 )
             );
 
         class TodoItem {
             public string Text { get; set; }
-            public ValueWithSetter<bool> Done { get; set; }
+            public bool Done { get; set; }
         }
-    }       
+    }
 }

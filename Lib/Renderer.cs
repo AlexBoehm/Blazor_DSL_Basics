@@ -78,15 +78,27 @@ namespace BlazorDSL {
         }
 
         private static void AddAttributes(int sequenceNumber, RenderTreeBuilder builder, AttributeBase[] attributes) {
+            
+            var allAttributes = GetAttributes(attributes);
+
             builder.AddMultipleAttributes(
                 sequenceNumber,
-                from attribute in attributes
-                where !(attribute is EmptyAttribute)
-                select attribute switch {
-                    Attribute a => new KeyValuePair<string, object>(a.Name, a.Value),
-                    _ => throw new NotImplementedException("Unknown type " + attribute.GetType())
-                }
+                from attribute in allAttributes                
+                select new KeyValuePair<string, object>(attribute.Name, attribute.Value)
             );
+        }
+
+        private static IEnumerable<Attribute> GetAttributes(AttributeBase[] attributes) {
+            return attributes.Select(GetAttributes).SelectMany(x => x);
+        }
+
+        private static IEnumerable<Attribute> GetAttributes(AttributeBase attribute) {
+            return attribute switch {
+                Attribute a => new Attribute[] { a },
+                EmptyAttribute => new Attribute[0],
+                MultipleAttributes a => a.Values.SelectMany(GetAttributes),
+                _ => throw new NotImplementedException()
+            };
         }
 
         //private static void AddBindAttribute(int sequenceNumber, RenderTreeBuilder builder) {

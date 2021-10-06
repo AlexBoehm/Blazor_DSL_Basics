@@ -3,7 +3,7 @@
 <ul class="TodoList">
     @foreach (var item in _items) {
         <li>
-            <input type="checkbox" @bind-value="item.Done"/>
+            <input type="checkbox" @bind="item.Done"/>
             <div>@item.Text</div>
         </li>
     }
@@ -16,7 +16,7 @@
 
 @code{
     List<TodoItem> _items = new List<TodoItem> {
-        new TodoItem { Text = "Task 1", Done = false },
+        new TodoItem { Text = "Task 1", Done = true },
         new TodoItem { Text = "Task 2", Done = false },
         new TodoItem { Text = "Task 3", Done = false }
     };
