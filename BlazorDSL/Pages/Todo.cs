@@ -12,23 +12,49 @@ namespace BlazorDSL.Pages {
             new TodoItem { Text = "Task 3", Done = false }
         };
 
+        string inputText = "";
+
         protected override Node Render() =>
-            ul(
-                from item in todoItems
-                select li(
-                    input(
-                        type("checkbox"),
-                        item.Done ? @checked("checked") : emptyAttribute(),
-                        bind.@checked(
-                            this,
-                            item.Done,
-                            nv => item.Done = nv
-                        )
-                    ),
-                    div(item.Text),
-                    div(item.Done ? "(Done)" : "")
+            div(
+                ul(
+                    from item in todoItems
+                    select li(
+                        input(
+                            type("checkbox"),
+                            bind.@checked(
+                                this,
+                                item.Done,
+                                nv => item.Done = nv
+                            )
+                        ),
+                        div(item.Text),
+                        div(item.Done ? "(Done)" : "")
+                    )
+                ),
+                div(
+                    form(
+                        attrs(
+                            onSubmit(this, _ => AddToDoItem())
+                        ),
+                        input(
+                            attrs(
+                                type("text"),
+                                bind.change.@string(this, inputText, nv => inputText = nv)
+                            )
+                        ),
+                        button("add")
+                    )
                 )
             );
+
+        void AddToDoItem() {
+            todoItems.Add(new TodoItem {
+                Done = false,
+                Text = inputText
+            });
+
+            inputText = "";
+        }
 
         class TodoItem {
             public string Text { get; set; }
