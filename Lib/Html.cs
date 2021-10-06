@@ -96,12 +96,20 @@ namespace BlazorDSL {
 
 
         public static class bind {
-            public static MultipleAttributes @checked(object receiver, bool value, Action<bool> onChange) {
-                return new MultipleAttributes(
-                    new AttributeBase[] {
-                        new Attribute("checked", Microsoft.AspNetCore.Components.BindConverter.FormatValue(value)),
+            public static BindAttribute @checked(object receiver, bool value, Action<bool> onChange) {
+                //return new MultipleAttributes(
+                //    new AttributeBase[] {
+                //        new Attribute("checked", Microsoft.AspNetCore.Components.BindConverter.FormatValue(value)),
+                //        new Attribute("onchange", EventCallback.Factory.CreateBinder(receiver, onChange, value))
+                //    }
+                //);
+
+                return new BindAttribute(
+                    new[] {
+                        new Attribute("checked", BindConverter.FormatValue(value)),
                         new Attribute("onchange", EventCallback.Factory.CreateBinder(receiver, onChange, value))
-                    }
+                    },
+                    "checked"
                 );
             }
 

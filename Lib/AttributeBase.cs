@@ -1,4 +1,6 @@
-﻿namespace BlazorDSL {
+﻿using System.Collections.Generic;
+
+namespace BlazorDSL {
     public class AttributeBase {        
     }
 
@@ -25,6 +27,17 @@
 
         public MultipleAttributes(AttributeBase[] attributes) {
             this.Values = attributes;
+        }
+    }
+
+    public class BindAttribute : AttributeBase {
+        public string UpdatesAttributeName { get; private set; } // i.e. checked
+
+        public Attribute[] Attributes { get; private set; }
+
+        public BindAttribute(Attribute[] attributes, string updatedAttributeName) {
+            this.Attributes = attributes;
+            this.UpdatesAttributeName = UpdatesAttributeName;
         }
     }
 }
