@@ -16,6 +16,10 @@ namespace BlazorDSL.Pages {
 
         protected override Node Render() =>
             div(
+                attrs(
+                    className("TodoList")
+                ),
+
                 ul(
                     from item in todoItems
                     select li(
@@ -24,13 +28,24 @@ namespace BlazorDSL.Pages {
                             bind.@checked(
                                 this,
                                 item.Done,
-                                nv => item.Done = nv
+                                status => SetItemStatus(item, status)
                             )
                         ),
-                        div(item.Text),
-                        div(item.Done ? "(Done)" : "")
+                        input(
+                            type("text"),
+                            item.Done ? style("text-decoration: line-through") : emptyAttribute(),
+                            bind.change.@string(this, item.Text, nv => item.Text = nv)
+                        ),
+                        button(
+                            attrs(
+                                className("Delete"),
+                                onClick(this, _ => todoItems.Remove(item))
+                            ),
+                            text("x")
+                        )
                     )
                 ),
+
                 div(
                     form(
                         attrs(
@@ -42,7 +57,29 @@ namespace BlazorDSL.Pages {
                                 bind.change.@string(this, inputText, nv => inputText = nv)
                             )
                         ),
-                        button("add")
+                        button(
+                            span(
+                                attrs(
+                                    className("oi oi-plus"),
+                                    attribute("aria-hidden", "true")
+
+                                )
+                            ),
+                            text("add") // <span class="oi oi-plus" aria-hidden="true" b-4vrz9tvk6a=""></span>
+                        )
+                    )
+                ),
+
+                div(
+                    attrs(
+                        className("ButtonBox")
+                    ),
+                    button(
+                        attrs(
+                            onClick(this, x => RemoveDoneItems()),
+                            className("RemoveDone")
+                        ),
+                        "remove all done"
                     )
                 )
             );
@@ -54,6 +91,13 @@ namespace BlazorDSL.Pages {
             });
 
             inputText = "";
+        }
+
+        void SetItemStatus(TodoItem item, bool status)
+            => item.Done = status;
+
+        void RemoveDoneItems() {
+            todoItems.RemoveAll(x => x.Done);
         }
 
         class TodoItem {

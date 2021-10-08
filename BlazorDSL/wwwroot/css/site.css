@@ -51,16 +51,76 @@ a, .btn-link {
     top: 0.5rem;
 }
 
-.TodoList {
-    list-style: none;    
+.TodoList {    
+    width: 500px;
+    box-shadow: 0px 0px 14px #ddd;
+    padding: 20px;    
+}
+
+.TodoList ul {
+    padding: 0;
+    margin: 0;
+    list-style: none;
+}
+
+.TodoList form {
+    margin-top: 20px;
 }
 
 .TodoList li {
     display: grid;
-    grid-template-columns: 20px 200px;
+    grid-template-columns: 20px auto 20px;
+}
+
+.TodoList li input[type=text] {
+    border: none;
+}
+
+.TodoList li input[type=text]:focus-visible {
+    outline: none;
 }
 
 .TodoList li input,
 .TodoList li div {
     align-self: center;
 }
+
+.TodoList li button.Delete {
+    background: red;
+    border: none;
+    width: 26px;
+    display: block;
+    height: 26px;
+    border-radius: 5px;
+    color: #fff;
+    visibility: hidden;
+}
+
+.TodoList li:hover button.Delete {
+    visibility: visible;
+}
+
+.TodoList form {
+    display: grid;
+    grid-template-columns: auto 90px;
+}
+
+.TodoList form button {
+    background: green;
+    border: 1px solid green;
+    color: #FFF;
+}
+
+.TodoList .oi {
+    margin-right: 5px;
+}
+
+.TodoList .ButtonBox {
+    margin-top: 10px;
+}
+
+.TodoList .ButtonBox .RemoveDone {
+    border: 1px solid #AAA;
+    background: #FFF;
+}
+
