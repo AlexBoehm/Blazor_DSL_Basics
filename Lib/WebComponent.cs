@@ -9,5 +9,7 @@ namespace BlazorDSL {
         }
 
         protected abstract Node Render();
+        
+
     }
 }

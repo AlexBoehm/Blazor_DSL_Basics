@@ -3,38 +3,18 @@ using System.Collections.Generic;
 using static BlazorDSL.Html;
 using System.Linq;
 using System.Collections.Immutable;
-using Microsoft.AspNetCore.Components.Rendering;
-using System.Diagnostics;
 
-namespace BlazorDSL.Pages {    
+namespace BlazorDSL.Pages {
 
     [Route("/todo")]
-    public partial class TodoPage : ComponentBase {
-        delegate void Dispatch(Message message);
-
+    public partial class TodoPage : MVUComponent<TodoPage.State, TodoPage.Message> {
         static List<TodoItem> todoItems => new List<TodoItem>() {
             new TodoItem("Task 1", true),
             new TodoItem("Task 2", false),
             new TodoItem ("Task 3", false)
         };
 
-        State _state;
-        Dispatch _dispatch;
-
-        public TodoPage() {
-            _state = Init();
-            _dispatch = (Message msg) => {
-                Debug.WriteLine(msg);
-                _state = Update(_state, msg);
-            };
-        }
-
-        protected override void BuildRenderTree(RenderTreeBuilder builder) {
-            var node = View(_state, _dispatch, this);
-            Renderer.Render(builder, node);
-        }
-
-        static Node View(State state, Dispatch dispatch, object @this) =>
+        override protected Node View(State state, Dispatch dispatch, object @this) =>
             div(
                 attrs(
                     className("TodoList")
@@ -104,7 +84,7 @@ namespace BlazorDSL.Pages {
                 )
             );
 
-        record Message();
+        public record Message();
 
         record AddItem(string text) : Message;
         record RemoveItem(TodoItem item) : Message;
@@ -113,20 +93,22 @@ namespace BlazorDSL.Pages {
         record RemoveDoneItems() : Message;
         record SetInputText(string text) : Message;
 
-        record State(ImmutableList<TodoItem> todoItems, string inputText);
+        // Sollte nach Möglichkeit nicht public sein
+        public record State(ImmutableList<TodoItem> todoItems, string inputText);
 
-        record TodoItem(
+        // Sollte nach Möglichkeit nicht public sein
+        public record TodoItem(
             string Text,
             bool Done
         );
 
-        static State Init() =>
+        protected override State Init() =>
             new State(
                 todoItems: ImmutableList<TodoItem>.Empty.AddRange(todoItems),
                 inputText: ""
             );
 
-        static State Update(State state, Message message) =>
+        protected override State Update(State state, Message message) =>
             message switch {
                 AddItem cmd => state with { 
                     todoItems = state.todoItems.Add(

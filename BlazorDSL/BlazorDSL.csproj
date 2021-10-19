@@ -6,6 +6,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\Lib\Lib.csproj" />
+    <ProjectReference Include="..\MVU\MVU.csproj" />
   </ItemGroup>
 
 </Project>
