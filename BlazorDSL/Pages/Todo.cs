@@ -8,12 +8,6 @@ namespace BlazorDSL.Pages {
 
     [Route("/todo")]
     public partial class TodoPage : MVUComponent<TodoPage.State, TodoPage.Message> {
-        static List<TodoItem> todoItems => new List<TodoItem>() {
-            new TodoItem("Task 1", true),
-            new TodoItem("Task 2", false),
-            new TodoItem ("Task 3", false)
-        };
-
         override protected Node View(State state, Dispatch dispatch, object @this) =>
             div(
                 attrs(
@@ -101,6 +95,12 @@ namespace BlazorDSL.Pages {
             string Text,
             bool Done
         );
+
+        static List<TodoItem> todoItems => new List<TodoItem>() {
+            new TodoItem("Task 1", true),
+            new TodoItem("Task 2", false),
+            new TodoItem ("Task 3", false)
+        };
 
         protected override State Init() =>
             new State(

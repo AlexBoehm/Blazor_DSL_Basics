@@ -115,6 +115,17 @@ namespace BlazorDSL {
                     );
                 }
             }
+
+            public static class input {
+                public static MultipleAttributes @string(object receiver, string value, Action<string> onChange) {
+                    return new MultipleAttributes(
+                        new AttributeBase[] {
+                            new Attribute("value", Microsoft.AspNetCore.Components.BindConverter.FormatValue(value)),
+                            new Attribute("oninput", EventCallback.Factory.CreateBinder(receiver, onChange, value))
+                        }
+                    );
+                }
+            }
         }
     }
 
