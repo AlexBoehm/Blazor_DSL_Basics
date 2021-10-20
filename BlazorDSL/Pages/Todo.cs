@@ -7,8 +7,14 @@ using System.Collections.Immutable;
 namespace BlazorDSL.Pages {
 
     [Route("/todo")]
-    public partial class TodoPage : MVUComponent<TodoPage.State, TodoPage.Message> {
-        override protected Node View(State state, Dispatch dispatch, object @this) =>
+    public partial class TodoPage : MVUComponent2<TodoPage.State, TodoPage.Message>{
+        public TodoPage() {
+            Init = _Init;
+            View = _View;
+            Update = _Update;
+        }
+
+        static Node _View(State state, Dispatch<Message> dispatch, object @this) =>
             div(
                 attrs(
                     className("TodoList")
@@ -102,13 +108,15 @@ namespace BlazorDSL.Pages {
             new TodoItem ("Task 3", false)
         };
 
-        protected override State Init() =>
+        static State _Init() =>
             new State(
                 todoItems: ImmutableList<TodoItem>.Empty.AddRange(todoItems),
                 inputText: ""
             );
 
-        protected override State Update(State state, Message message) =>
+        // Es wäre besser, wenn Update static sein könnte. Denn dann ist es wahrscheinlicher,
+        // das Update auch pure ist.
+        static State _Update(State state, Message message) =>
             message switch {
                 AddItem cmd => state with { 
                     todoItems = state.todoItems.Add(
