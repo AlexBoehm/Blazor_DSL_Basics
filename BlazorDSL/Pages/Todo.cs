@@ -10,14 +10,14 @@ namespace BlazorDSL.Pages {
     public partial class TodoPage : MVUComponent3{
         public TodoPage() : base(
             ViewBuilder.BuildViewMethod<State, Message>(
-                _Init,
-                _Update,
-                _View
+                Init,
+                Update,
+                View
             )
         ) {
         }
 
-        static Node _View(State state, Dispatch<Message> dispatch, object @this) =>
+        static Node View(State state, Dispatch<Message> dispatch, object @this) =>
             div(
                 attrs(
                     className("TodoList")
@@ -111,7 +111,7 @@ namespace BlazorDSL.Pages {
             new TodoItem ("Task 3", false)
         };
 
-        static State _Init() =>
+        static State Init() =>
             new State(
                 todoItems: ImmutableList<TodoItem>.Empty.AddRange(todoItems),
                 inputText: ""
@@ -119,7 +119,7 @@ namespace BlazorDSL.Pages {
 
         // Es wäre besser, wenn Update static sein könnte. Denn dann ist es wahrscheinlicher,
         // das Update auch pure ist.
-        static State _Update(State state, Message message) =>
+        static State Update(State state, Message message) =>
             message switch {
                 AddItem cmd => state with { 
                     todoItems = state.todoItems.Add(
