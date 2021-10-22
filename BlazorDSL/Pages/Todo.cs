@@ -7,11 +7,14 @@ using System.Collections.Immutable;
 namespace BlazorDSL.Pages {
 
     [Route("/todo")]
-    public partial class TodoPage : MVUComponent2<TodoPage.State, TodoPage.Message>{
-        public TodoPage() {
-            Init = _Init;
-            View = _View;
-            Update = _Update;
+    public partial class TodoPage : MVUComponent3{
+        public TodoPage() : base(
+            ViewBuilder.BuildViewMethod<State, Message>(
+                _Init,
+                _Update,
+                _View
+            )
+        ) {
         }
 
         static Node _View(State state, Dispatch<Message> dispatch, object @this) =>
@@ -34,7 +37,7 @@ namespace BlazorDSL.Pages {
                         input(
                             type("text"),
                             item.Done ? style("text-decoration: line-through") : emptyAttribute(),
-                            bind.change.@string(@this, item.Text, nv => dispatch(new ChangeItemText(item, nv)))
+                            bind.input.@string(@this, item.Text, nv => dispatch(new ChangeItemText(item, nv)))
                         ),
                         button(
                             attrs(
@@ -54,7 +57,7 @@ namespace BlazorDSL.Pages {
                         input(
                             attrs(
                                 type("text"),
-                                bind.change.@string(@this, state.inputText, nv => dispatch(new SetInputText(nv)))
+                                bind.input.@string(@this, state.inputText, nv => dispatch(new SetInputText(nv)))
                             )
                         ),
                         button(
