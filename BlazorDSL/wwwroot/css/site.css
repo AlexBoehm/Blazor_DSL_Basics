@@ -63,7 +63,7 @@ a, .btn-link {
     list-style: none;
 }
 
-.TodoList form {
+.TodoList .form {
     margin-top: 20px;
 }
 
@@ -100,15 +100,16 @@ a, .btn-link {
     visibility: visible;
 }
 
-.TodoList form {
+.TodoList .form {
     display: grid;
-    grid-template-columns: auto 90px;
+    grid-template-columns: auto 91px 131px;
 }
 
-.TodoList form button {
+.TodoList .form button {
     background: green;
     border: 1px solid green;
     color: #FFF;
+    margin-left: 1px;
 }
 
 .TodoList .oi {
@@ -123,4 +124,3 @@ a, .btn-link {
     border: 1px solid #AAA;
     background: #FFF;
 }
-

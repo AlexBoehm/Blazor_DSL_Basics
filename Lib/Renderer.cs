@@ -95,6 +95,7 @@ namespace BlazorDSL {
         private static IEnumerable<Attribute> GetAttributes(AttributeBase attribute) {
             return attribute switch {
                 Attribute a => new Attribute[] { a },
+                // PreventDefaultAttribute a => new Attribute[] { a },
                 EmptyAttribute => new Attribute[0],
                 MultipleAttributes a => a.Values.SelectMany(GetAttributes),
                 _ => throw new NotImplementedException()

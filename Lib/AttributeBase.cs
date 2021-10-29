@@ -40,4 +40,12 @@ namespace BlazorDSL {
             this.UpdatesAttributeName = UpdatesAttributeName;
         }
     }
+
+    public class PreventDefaultAttribute : AttributeBase {
+        private PreventDefaultAttribute() {
+        }
+
+        private static PreventDefaultAttribute _instance = new PreventDefaultAttribute();
+        public static PreventDefaultAttribute Instance => _instance;
+    }
 }

@@ -12,7 +12,7 @@
 
     <form @onsubmit="AddItem">
         <input type="text" @bind-value="inputValue" />
-        <button type="submit">Add Todo</button>
+        <button type="submit" @onkeypress:preventDefault>Add Todo</button>
     </form>
 </div>
 

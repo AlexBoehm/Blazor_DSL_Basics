@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using static BlazorDSL.Html;
 using System.Linq;
 using System.Collections.Immutable;
+using System.Threading.Tasks;
 
 namespace BlazorDSL.Pages {
 
@@ -20,7 +21,8 @@ namespace BlazorDSL.Pages {
         static Node View(State state, Dispatch<Message> dispatch, object @this) =>
             div(
                 attrs(
-                    className("TodoList")
+                    className("TodoList"),
+                    onSubmit(@this, _ => dispatch(new AddItemDelayed(state.inputText)))
                 ),
 
                 ul(
@@ -49,27 +51,41 @@ namespace BlazorDSL.Pages {
                     )
                 ),
 
-                div(
-                    form(
+                form(
+                    attrs(
+                        className("form")
+                    ),
+                    input(
                         attrs(
-                            onSubmit(@this, _ => dispatch(new AddItem(state.inputText)))
-                        ),
-                        input(
+                            type("text"),
+                            bind.input.@string(@this, state.inputText, nv => dispatch(new SetInputText(nv)))
+                        )
+                    ),
+                    button(
+                        span(
                             attrs(
-                                type("text"),
-                                bind.input.@string(@this, state.inputText, nv => dispatch(new SetInputText(nv)))
+                                className("oi oi-plus"),
+                                attribute("aria-hidden", "true"),
+                                type("button")
+                                //onClick(@this, e => {
+                                //    dispatch(new AddItem(state.inputText));
+                                //})
                             )
                         ),
-                        button(
-                            span(
-                                attrs(
-                                    className("oi oi-plus"),
-                                    attribute("aria-hidden", "true")
-
-                                )
-                            ),
-                            text("add") // <span class="oi oi-plus" aria-hidden="true" b-4vrz9tvk6a=""></span>
-                        )
+                        text("add") // <span class="oi oi-plus" aria-hidden="true" b-4vrz9tvk6a=""></span>
+                    ),
+                    button(
+                        span(
+                            attrs(
+                                className("oi oi-plus"),
+                                attribute("aria-hidden", "true"),
+                                type("button")
+                                //onClick(@this, _ => {
+                                //    dispatch(new AddItemDelayed(state.inputText));
+                                //})
+                            )
+                        ),
+                        text("add delayed") // <span class="oi oi-plus" aria-hidden="true" b-4vrz9tvk6a=""></span>
                     )
                 ),
 
@@ -95,6 +111,7 @@ namespace BlazorDSL.Pages {
         record ChangeItemText(TodoItem item, string text) : Message;
         record RemoveDoneItems() : Message;
         record SetInputText(string text) : Message;
+        record AddItemDelayed(string text) : Message;
 
         // Sollte nach Möglichkeit nicht public sein
         public record State(ImmutableList<TodoItem> todoItems, string inputText);
@@ -119,42 +136,68 @@ namespace BlazorDSL.Pages {
 
         // Es wäre besser, wenn Update static sein könnte. Denn dann ist es wahrscheinlicher,
         // das Update auch pure ist.
-        static State Update(State state, Message message) =>
+        static (State, Command<Message>) Update(State state, Message message) =>
             message switch {
-                AddItem cmd => state with { 
-                    todoItems = state.todoItems.Add(
-                        new TodoItem(cmd.text, false)
-                    )
-                },
+                AddItem cmd => (
+                    state with {
+                        todoItems = state.todoItems.Add(
+                            new TodoItem(cmd.text, false)
+                        )
+                    },
+                    Cmd.None<Message>()
+                ),
 
-                RemoveItem cmd => state with { 
-                    todoItems = state.todoItems.Remove(cmd.item)
-                },
+                RemoveItem cmd => (
+                    state with { 
+                        todoItems = state.todoItems.Remove(cmd.item)
+                    },
+                    Cmd.None<Message>()
+                ),
 
-                RemoveDoneItems cmd => state with {
-                    todoItems = state.todoItems.RemoveAll(
-                        item => item.Done == true
-                    )
-                },
+                RemoveDoneItems cmd => (
+                    state with {
+                        todoItems = state.todoItems.RemoveAll(
+                            item => item.Done == true
+                        )
+                    },
+                    Cmd.None<Message>()
+                ),
 
-                SetItemStatus cmd => state with { 
-                    todoItems = state.todoItems.Replace(
-                        cmd.item,
-                        new TodoItem(cmd.item.Text, cmd.status)
-                    )
-                },
+                SetItemStatus cmd => (
+                    state with {
+                        todoItems = state.todoItems.Replace(
+                            cmd.item,
+                            new TodoItem(cmd.item.Text, cmd.status)
+                        )
+                    },
+                    Cmd.None<Message>()
+                ),
 
-                ChangeItemText cmd => state with
-                {
-                    todoItems = state.todoItems.Replace(
-                        cmd.item,
-                        new TodoItem(cmd.text, cmd.item.Done)
-                    )
-                },
+                ChangeItemText cmd => (
+                    state with
+                    {
+                        todoItems = state.todoItems.Replace(
+                            cmd.item,
+                            new TodoItem(cmd.text, cmd.item.Done)
+                        )
+                    },
+                    Cmd.None<Message>()
+                ),
 
-                SetInputText cmd => state with {
-                    inputText = cmd.text
-                }
+                SetInputText cmd => (
+                    state with {
+                        inputText = cmd.text
+                    },
+                    Cmd.None<Message>()
+                ),
+
+                AddItemDelayed cmd => ( 
+                    state, 
+                    async (Dispatch<Message> dispatch) => {
+                        await Task.Delay(1000);
+                        dispatch(new AddItem(cmd.text));
+                    }
+                )
             };
     }
 }

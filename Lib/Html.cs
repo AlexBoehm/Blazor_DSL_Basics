@@ -1,8 +1,6 @@
 ﻿using Microsoft.AspNetCore.Components;
 using Microsoft.AspNetCore.Components.Rendering;
-using Microsoft.AspNetCore.Components.Web;
 using System;
-using System.Collections.Generic;
 using System.Linq;
 
 
@@ -32,6 +30,9 @@ namespace BlazorDSL {
 
         public static AttributeBase emptyAttribute()
             => EmptyAttribute.Instance;
+
+        public static PreventDefaultAttribute preventDefault()
+            => PreventDefaultAttribute.Instance;
 
         #endregion        
 
