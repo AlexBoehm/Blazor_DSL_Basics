@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using static BlazorDSL.Html;
 using System.Linq;
 using System.Collections.Immutable;
+using System.Threading.Tasks;
 
 namespace BlazorDSL.Pages {
 
@@ -95,6 +96,7 @@ namespace BlazorDSL.Pages {
         record ChangeItemText(TodoItem item, string text) : Message;
         record RemoveDoneItems() : Message;
         record SetInputText(string text) : Message;
+        record AddItemDelayed(string text) : Message;
 
         // Sollte nach Möglichkeit nicht public sein
         public record State(ImmutableList<TodoItem> todoItems, string inputText);
@@ -119,42 +121,68 @@ namespace BlazorDSL.Pages {
 
         // Es wäre besser, wenn Update static sein könnte. Denn dann ist es wahrscheinlicher,
         // das Update auch pure ist.
-        static State Update(State state, Message message) =>
+        static (State state, Command<Message> command) Update(State state, Message message) =>
             message switch {
-                AddItem cmd => state with { 
-                    todoItems = state.todoItems.Add(
-                        new TodoItem(cmd.text, false)
-                    )
-                },
+                AddItem cmd => (
+                    state with { 
+                        todoItems = state.todoItems.Add(
+                            new TodoItem(cmd.text, false)
+                        )
+                    },
+                    Cmd.None<Message>()
+                ),
 
-                RemoveItem cmd => state with { 
-                    todoItems = state.todoItems.Remove(cmd.item)
-                },
+                RemoveItem cmd => (
+                    state with { 
+                        todoItems = state.todoItems.Remove(cmd.item)
+                    },
+                    Cmd.None<Message>()
+                ),
 
-                RemoveDoneItems cmd => state with {
-                    todoItems = state.todoItems.RemoveAll(
-                        item => item.Done == true
-                    )
-                },
+                RemoveDoneItems cmd => (
+                    state with {
+                        todoItems = state.todoItems.RemoveAll(
+                            item => item.Done == true
+                        )
+                    },
+                    Cmd.None<Message>()
+                ),
 
-                SetItemStatus cmd => state with { 
-                    todoItems = state.todoItems.Replace(
-                        cmd.item,
-                        new TodoItem(cmd.item.Text, cmd.status)
-                    )
-                },
+                SetItemStatus cmd => (
+                    state with { 
+                        todoItems = state.todoItems.Replace(
+                            cmd.item,
+                            new TodoItem(cmd.item.Text, cmd.status)
+                        )
+                    },
+                    Cmd.None<Message>()
+                ),
 
-                ChangeItemText cmd => state with
-                {
-                    todoItems = state.todoItems.Replace(
-                        cmd.item,
-                        new TodoItem(cmd.text, cmd.item.Done)
-                    )
-                },
+                ChangeItemText cmd => (
+                    state with
+                    {
+                        todoItems = state.todoItems.Replace(
+                            cmd.item,
+                            new TodoItem(cmd.text, cmd.item.Done)
+                        )
+                    },
+                    Cmd.None<Message>()
+                ),
 
-                SetInputText cmd => state with {
-                    inputText = cmd.text
-                }
+                SetInputText cmd => (
+                    state with {
+                        inputText = cmd.text
+                    },
+                    Cmd.None<Message>()
+                ),
+
+                AddItemDelayed cmd => ( 
+                    state, 
+                    async (Dispatch<Message> dispatch) => {
+                        await Task.Delay(1000);
+                        dispatch(new AddItem(cmd.text));
+                    }
+                )
             };
     }
 }
