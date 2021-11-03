@@ -8,16 +8,12 @@ using System.Threading.Tasks;
 namespace BlazorDSL.Pages {
 
     [Route("/todo")]
-    public partial class TodoPage : MVUComponent3{
-        public TodoPage() : base() {
-            base.SetView(
-                MVUViewBuilder.BuildViewMethod<State, Message>(
-                    Init,
-                    Update,
-                    View,
-                    this.InvokeAsync,
-                    this.StateHasChanged
-                )
+    public partial class TodoPage : MVUComponent4{
+        public TodoPage() {
+            SetUp<State, Message>(
+                Init,
+                Update,
+                View
             );
         }
 
