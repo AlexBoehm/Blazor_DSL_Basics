@@ -11,7 +11,7 @@ namespace BlazorDSL {
         ) {
             var state = initState();
 
-            Dispatch<TMessage> dispatch = (TMessage msg) => {
+            void dispatch(TMessage msg) {
                 Debug.WriteLine(msg);
                 state = update(state, msg);
             };
@@ -28,9 +28,7 @@ namespace BlazorDSL {
         ) {
             var state = initState();
 
-            Dispatch<TMessage> dispatch = null;
-
-            dispatch = (TMessage msg) => {
+            void dispatch(TMessage msg) {
                 Debug.WriteLine(msg);
                 (var newState, var command) = update(state, msg);
                 state = newState;
