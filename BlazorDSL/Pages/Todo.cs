@@ -11,7 +11,7 @@ namespace BlazorDSL.Pages {
     public partial class TodoPage : MVUComponent3{
         public TodoPage() : base() {
             base.SetView(
-                ViewBuilder.BuildViewMethod<State, Message>(
+                MVUViewBuilder.BuildViewMethod<State, Message>(
                     Init,
                     Update,
                     View,
