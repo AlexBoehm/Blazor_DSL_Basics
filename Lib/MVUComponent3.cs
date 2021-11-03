@@ -11,9 +11,12 @@ namespace BlazorDSL {
     public abstract class MVUComponent3 : ComponentBase {        
         View _view;
 
-        public MVUComponent3(View view) {
+        //public MVUComponent3(View view) {
+        //    _view = view;
+        //}
+
+        protected void SetView(View view) =>
             _view = view;
-        }
 
         protected override void BuildRenderTree(RenderTreeBuilder builder) {
             var node = _view(this);
@@ -40,7 +43,9 @@ namespace BlazorDSL {
         public static View BuildViewMethod<TState, TMessage>(
             InitState<TState> initState,
             UpdateStateBuildCommand<TState, TMessage> update,
-            RenderView<TState, TMessage> view
+            RenderView<TState, TMessage> view,
+            Func<Func<Task>, Task> invokeAsync,
+            Action stateHasChanged
         ) {
             var state = initState();
 
@@ -51,16 +56,14 @@ namespace BlazorDSL {
                 (var newState, var command) = update(state, msg);
                 state = newState;
 
-                //Task.Run()
-                //await command(dispatch);
-                // Task.Run(command(dispatch))
-
-                Task.Factory.StartNew(
-                    () => {
-                        command(dispatch);
+                // Ausführen des Commands
+                Task.Factory.StartNew(() => {
+                    invokeAsync(async () => {
+                        await command(dispatch);
+                        stateHasChanged();
+                    });
                     }
                 );
-                // command.
             };
 
             return sender => view(state, dispatch, sender);

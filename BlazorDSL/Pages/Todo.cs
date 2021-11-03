@@ -9,13 +9,16 @@ namespace BlazorDSL.Pages {
 
     [Route("/todo")]
     public partial class TodoPage : MVUComponent3{
-        public TodoPage() : base(
-            ViewBuilder.BuildViewMethod<State, Message>(
-                Init,
-                Update,
-                View
-            )
-        ) {
+        public TodoPage() : base() {
+            base.SetView(
+                ViewBuilder.BuildViewMethod<State, Message>(
+                    Init,
+                    Update,
+                    View,
+                    this.InvokeAsync,
+                    this.StateHasChanged
+                )
+            );
         }
 
         static Node View(State state, Dispatch<Message> dispatch, object @this) =>
@@ -53,7 +56,7 @@ namespace BlazorDSL.Pages {
                 div(
                     form(
                         attrs(
-                            onSubmit(@this, _ => dispatch(new AddItem(state.inputText)))
+                            onSubmit(@this, _ => dispatch(new AddItemDelayed(state.inputText)))
                         ),
                         input(
                             attrs(
@@ -166,6 +169,7 @@ namespace BlazorDSL.Pages {
                             new TodoItem(cmd.text, cmd.item.Done)
                         )
                     },
+
                     Cmd.None<Message>()
                 ),
 
@@ -177,7 +181,9 @@ namespace BlazorDSL.Pages {
                 ),
 
                 AddItemDelayed cmd => ( 
-                    state, 
+                    state with { 
+                        inputText = ""
+                    },
                     async (Dispatch<Message> dispatch) => {
                         await Task.Delay(1000);
                         dispatch(new AddItem(cmd.text));
