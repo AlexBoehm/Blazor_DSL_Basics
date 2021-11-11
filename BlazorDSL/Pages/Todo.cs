@@ -8,10 +8,11 @@ using System.Threading.Tasks;
 namespace BlazorDSL.Pages {
 
     [Route("/todo")]
-    public partial class TodoPage : MVUComponent4{
+    public partial class TodoPage : MVUComponent4 {
         public TodoPage() {
             SetUp<State, Message>(
-                Init,
+                InitState,
+                LoadItemsFromDatabase,
                 Update,
                 View
             );
@@ -96,6 +97,8 @@ namespace BlazorDSL.Pages {
         record RemoveDoneItems() : Message;
         record SetInputText(string text) : Message;
         record AddItemDelayed(string text) : Message;
+        record LoadItemFromDatabase() : Message;
+        record ItemsFromDatabaseLoaded(IEnumerable<TodoItem> items) : Message;
 
         // Sollte nach Möglichkeit nicht public sein
         public record State(ImmutableList<TodoItem> todoItems, string inputText);
@@ -112,11 +115,16 @@ namespace BlazorDSL.Pages {
             new TodoItem ("Task 3", false)
         };
 
-        static State Init() =>
+        static State InitState() =>
             new State(
                 todoItems: ImmutableList<TodoItem>.Empty.AddRange(todoItems),
                 inputText: ""
             );
+
+        static async Task LoadItemsFromDatabase(Dispatch<Message> dispatch) {
+            var items = await TodoItemRepository.GetItems();
+            dispatch(new ItemsFromDatabaseLoaded(items));
+        }
 
         // Es wäre besser, wenn Update static sein könnte. Denn dann ist es wahrscheinlicher,
         // das Update auch pure ist.
@@ -184,6 +192,14 @@ namespace BlazorDSL.Pages {
                         await Task.Delay(1000);
                         dispatch(new AddItem(cmd.text));
                     }
+                ),
+
+                ItemsFromDatabaseLoaded cmd => (
+                    state with
+                    {
+                        todoItems = ImmutableList<TodoItem>.Empty.AddRange(cmd.items)
+                    },
+                    Cmd.None<Message>()
                 )
             };
     }

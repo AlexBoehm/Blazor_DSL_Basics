@@ -19,13 +19,25 @@ namespace BlazorDSL {
             return sender => view(state, dispatch, sender);
         }
 
-        public static View BuildViewMethod<TState, TMessage>(
+        public static (View view, Action initialize) BuildViewMethod<TState, TMessage>(
             InitState<TState> initState,
+            Command<TMessage> initCommand,
             UpdateStateBuildCommand<TState, TMessage> update,
             RenderView<TState, TMessage> view,
             Func<Func<Task>, Task> invokeAsync,
             Action stateHasChanged
         ) {
+            void executeCommand(Command<TMessage> command) {
+                Task.Factory.StartNew(
+                    () => {
+                        invokeAsync(async () => {
+                            await command(dispatch);
+                            stateHasChanged();
+                        });
+                    }
+                );
+            }
+
             var state = initState();
 
             void dispatch(TMessage msg) {
@@ -34,16 +46,13 @@ namespace BlazorDSL {
                 state = newState;
 
                 // Ausführen des Commands
-                Task.Factory.StartNew(() => {
-                    invokeAsync(async () => {
-                        await command(dispatch);
-                        stateHasChanged();
-                    });
-                }
-                );
+                executeCommand(command);                
             };
 
-            return sender => view(state, dispatch, sender);
+            return (
+                view: sender => view(state, dispatch, sender),
+                initialize: () => executeCommand(initCommand)
+            );
         }
     }
 }

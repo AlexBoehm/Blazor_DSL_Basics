@@ -5,6 +5,10 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <PackageReference Include="MySqlConnector" Version="2.0.0-beta.5" />
+  </ItemGroup>
+
+  <ItemGroup>
     <ProjectReference Include="..\Lib\Lib.csproj" />
     <ProjectReference Include="..\MVU\MVU.csproj" />
   </ItemGroup>
