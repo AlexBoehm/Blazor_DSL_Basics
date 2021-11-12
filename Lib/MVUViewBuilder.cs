@@ -31,8 +31,14 @@ namespace BlazorDSL {
                 Task.Factory.StartNew(
                     () => {
                         invokeAsync(async () => {
-                            await command(dispatch);
-                            stateHasChanged();
+                            try {
+                                await command(dispatch);
+                                stateHasChanged();
+                            } 
+                            catch (Exception e) {
+                                Debug.WriteLine(e.Message);
+                                Debug.WriteLine(e.StackTrace);
+                            }
                         });
                     }
                 );

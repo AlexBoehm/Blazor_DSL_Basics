@@ -20,7 +20,7 @@ namespace BlazorDSL {
                 "SELECT * FROM todoitems",
                 reader => new TodoItem(
                    (string) reader["Text"],
-                   (bool) reader["Done"]
+                   (sbyte) reader["Done"] == 1
                 )
             );
 

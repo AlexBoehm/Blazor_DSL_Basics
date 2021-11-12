@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace BlazorDSL {
     class MySql {
-        const string ConnectionString = "server=localhost;uid=admin;pwd=alex";
+        const string ConnectionString = "server=localhost;uid=root;pwd=alex;database=blazor-todo";
 
         public static IEnumerable<T> Query<T>(string query, Func<MySqlDataReader, T> action) {
             using (var con = new MySqlConnection(ConnectionString)) {
@@ -23,15 +23,17 @@ namespace BlazorDSL {
             }
         }
 
-        public static async Task<IEnumerable<T>> QueryAsync<T>(string query, Func<MySqlDataReader, T> action) {
+        public static async Task<T[]> QueryAsync<T>(string query, Func<MySqlDataReader, T> action) {
             using (var con = new MySqlConnection(ConnectionString)) {
                 con.Open();
 
                 var cmd = new MySqlCommand(query);
                 cmd.Connection = con;
 
-                using (var reader = await cmd.ExecuteReaderAsync()) {
-                    return ReadFromReader(reader, action);
+                var reader = await cmd.ExecuteReaderAsync();
+
+                using (reader) {
+                    return ReadFromReader(reader, action).ToArray();
                 }
             }
         }
