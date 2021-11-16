@@ -109,15 +109,9 @@ namespace BlazorDSL.Pages {
             bool Done
         );
 
-        static List<TodoItem> todoItems => new List<TodoItem>() {
-            new TodoItem("Task 1", true),
-            new TodoItem("Task 2", false),
-            new TodoItem ("Task 3", false)
-        };
-
         static State InitState() =>
             new State(
-                todoItems: ImmutableList<TodoItem>.Empty.AddRange(todoItems),
+                todoItems: ImmutableList<TodoItem>.Empty,
                 inputText: ""
             );
 
@@ -184,7 +178,7 @@ namespace BlazorDSL.Pages {
                     Cmd.None<Message>()
                 ),
 
-                AddItemDelayed cmd => ( 
+                AddItemDelayed cmd => (
                     state with { 
                         inputText = ""
                     },
