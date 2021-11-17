@@ -38,6 +38,14 @@ namespace BlazorDSL {
             }
         }
 
+        public static async Task<T> QueryScalarAsync<T>(string query, Func<object, T> convert) {
+            var result =
+                await QueryAsync<T>(query, reader => convert(reader[0]))
+                .ConfigureAwait(false);
+
+            return result[0];
+        }
+
         static IEnumerable<T> ReadFromReader<T>(MySqlDataReader reader, Func<MySqlDataReader, T> action) {
             while (reader.Read()) {
                 yield return action.Invoke(reader);

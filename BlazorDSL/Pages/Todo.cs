@@ -91,6 +91,7 @@ namespace BlazorDSL.Pages {
         public record Message();
 
         record AddItem(string text) : Message;
+        record ItemAdded(TodoItem item) : Message;
         record RemoveItem(TodoItem item) : Message;
         record SetItemStatus(TodoItem item, bool status) : Message;
         record ChangeItemText(TodoItem item, string text) : Message;
@@ -105,6 +106,7 @@ namespace BlazorDSL.Pages {
 
         // Sollte nach Möglichkeit nicht public sein
         public record TodoItem(
+            int Id,
             string Text,
             bool Done
         );
@@ -116,32 +118,46 @@ namespace BlazorDSL.Pages {
             );
 
         static async Task LoadItemsFromDatabase(Dispatch<Message> dispatch) {
+            
             var items = await TodoItemRepository.GetItems();
             dispatch(new ItemsFromDatabaseLoaded(items));
         }
 
-        // Es wäre besser, wenn Update static sein könnte. Denn dann ist es wahrscheinlicher,
-        // das Update auch pure ist.
+        private static Command<Message> AddNewItem(string text) {
+            return async (Dispatch<Message> dispatch) => {
+                var item = new TodoItem(-1, text, false);
+                var id = await TodoItemRepository.InsertItem(item);
+                item = item with { Id = id };
+                dispatch(new ItemAdded(item));
+            };
+        }
+
         static (State state, Command<Message> command) Update(State state, Message message) =>
             message switch {
                 AddItem cmd => (
-                    state with { 
-                        todoItems = state.todoItems.Add(
-                            new TodoItem(cmd.text, false)
-                        )
+                    state,
+                    AddNewItem(cmd.text)
+                ),
+
+                ItemAdded cmd => (
+                    state with
+                    {
+                        todoItems = state.todoItems.Add(cmd.item)
                     },
                     Cmd.None<Message>()
                 ),
 
                 RemoveItem cmd => (
-                    state with { 
+                    state with
+                    {
                         todoItems = state.todoItems.Remove(cmd.item)
                     },
                     Cmd.None<Message>()
                 ),
 
                 RemoveDoneItems cmd => (
-                    state with {
+                    state with
+                    {
                         todoItems = state.todoItems.RemoveAll(
                             item => item.Done == true
                         )
@@ -150,10 +166,11 @@ namespace BlazorDSL.Pages {
                 ),
 
                 SetItemStatus cmd => (
-                    state with { 
+                    state with
+                    {
                         todoItems = state.todoItems.Replace(
                             cmd.item,
-                            new TodoItem(cmd.item.Text, cmd.status)
+                            cmd.item with { Done = cmd.status }
                         )
                     },
                     Cmd.None<Message>()
@@ -164,7 +181,7 @@ namespace BlazorDSL.Pages {
                     {
                         todoItems = state.todoItems.Replace(
                             cmd.item,
-                            new TodoItem(cmd.text, cmd.item.Done)
+                            cmd.item with { Text = cmd.text }
                         )
                     },
 
@@ -172,14 +189,16 @@ namespace BlazorDSL.Pages {
                 ),
 
                 SetInputText cmd => (
-                    state with {
+                    state with
+                    {
                         inputText = cmd.text
                     },
                     Cmd.None<Message>()
                 ),
 
                 AddItemDelayed cmd => (
-                    state with { 
+                    state with
+                    {
                         inputText = ""
                     },
                     async (Dispatch<Message> dispatch) => {
