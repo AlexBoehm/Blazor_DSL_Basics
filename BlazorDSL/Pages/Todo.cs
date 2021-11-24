@@ -53,7 +53,7 @@ namespace BlazorDSL.Pages {
                 div(
                     form(
                         attrs(
-                            onSubmit(@this, _ => dispatch(new AddItemDelayed(state.inputText)))
+                            onSubmit(@this, _ => dispatch(new AddItem(state.inputText)))
                         ),
                         input(
                             attrs(
@@ -93,11 +93,11 @@ namespace BlazorDSL.Pages {
         record AddItem(string text) : Message;
         record ItemAdded(TodoItem item) : Message;
         record RemoveItem(TodoItem item) : Message;
+        record ItemRemoved(TodoItem item) : Message;
         record SetItemStatus(TodoItem item, bool status) : Message;
         record ChangeItemText(TodoItem item, string text) : Message;
         record RemoveDoneItems() : Message;
         record SetInputText(string text) : Message;
-        record AddItemDelayed(string text) : Message;
         record LoadItemFromDatabase() : Message;
         record ItemsFromDatabaseLoaded(IEnumerable<TodoItem> items) : Message;
 
@@ -132,10 +132,14 @@ namespace BlazorDSL.Pages {
             };
         }
 
+
         static (State state, Command<Message> command) Update(State state, Message message) =>
             message switch {
                 AddItem cmd => (
-                    state,
+                    state with
+                    {
+                        inputText = ""
+                    },
                     AddNewItem(cmd.text)
                 ),
 
@@ -144,7 +148,7 @@ namespace BlazorDSL.Pages {
                     {
                         todoItems = state.todoItems.Add(cmd.item)
                     },
-                    Cmd.None<Message>()
+                    Cmd<Message>.None
                 ),
 
                 RemoveItem cmd => (
@@ -152,7 +156,9 @@ namespace BlazorDSL.Pages {
                     {
                         todoItems = state.todoItems.Remove(cmd.item)
                     },
-                    Cmd.None<Message>()
+                    async (Dispatch<Message> Dispatch) => {
+                        await TodoItemRepository.RemoveItem(cmd.item.Id).ConfigureAwait(false);
+                    }
                 ),
 
                 RemoveDoneItems cmd => (
@@ -162,7 +168,7 @@ namespace BlazorDSL.Pages {
                             item => item.Done == true
                         )
                     },
-                    Cmd.None<Message>()
+                    Cmd<Message>.None
                 ),
 
                 SetItemStatus cmd => (
@@ -173,7 +179,9 @@ namespace BlazorDSL.Pages {
                             cmd.item with { Done = cmd.status }
                         )
                     },
-                    Cmd.None<Message>()
+                    async (Dispatch<Message> Dispatch) => {
+                        await TodoItemRepository.UpdateItem(cmd.item with { Done = cmd.status }).ConfigureAwait(false);
+                    }
                 ),
 
                 ChangeItemText cmd => (
@@ -184,8 +192,9 @@ namespace BlazorDSL.Pages {
                             cmd.item with { Text = cmd.text }
                         )
                     },
-
-                    Cmd.None<Message>()
+                    async (Dispatch<Message> Dispatch) => {
+                        await TodoItemRepository.UpdateItem(cmd.item with { Text = cmd.text }).ConfigureAwait(false);
+                    }
                 ),
 
                 SetInputText cmd => (
@@ -193,18 +202,7 @@ namespace BlazorDSL.Pages {
                     {
                         inputText = cmd.text
                     },
-                    Cmd.None<Message>()
-                ),
-
-                AddItemDelayed cmd => (
-                    state with
-                    {
-                        inputText = ""
-                    },
-                    async (Dispatch<Message> dispatch) => {
-                        await Task.Delay(1000);
-                        dispatch(new AddItem(cmd.text));
-                    }
+                    Cmd<Message>.None
                 ),
 
                 ItemsFromDatabaseLoaded cmd => (
@@ -212,7 +210,7 @@ namespace BlazorDSL.Pages {
                     {
                         todoItems = ImmutableList<TodoItem>.Empty.AddRange(cmd.items)
                     },
-                    Cmd.None<Message>()
+                    Cmd<Message>.None
                 )
             };
     }

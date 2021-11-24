@@ -24,30 +24,41 @@ namespace BlazorDSL {
             Command<TMessage> initCommand,
             UpdateStateBuildCommand<TState, TMessage> update,
             RenderView<TState, TMessage> view,
-            Func<Func<Task>, Task> invokeAsync,
+            Func<Action, Task> invokeAsync,
             Action stateHasChanged
         ) {
             void executeCommand(Command<TMessage> command) {
-                Task.Factory.StartNew(
-                    () => {
-                        invokeAsync(async () => {
-                            try {
-                                await command(dispatch);
-                                stateHasChanged();
-                            } 
-                            catch (Exception e) {
-                                Debug.WriteLine(e.Message);
-                                Debug.WriteLine(e.StackTrace);
-                            }
-                        });
-                    }
-                );
+                var hasToBeExecuted = !Equals(Cmd<TMessage>.None, command);
+
+                if(hasToBeExecuted) {
+                    Task.Factory.StartNew(
+                        async () => {
+                            Debug.WriteLine($"[{DateTime.Now}] Starting command");
+                            var stopwatch = new Stopwatch();
+                            stopwatch.Start();
+                            await command(dispatch);
+                            stopwatch.Stop();
+                            Debug.WriteLine($"[{DateTime.Now}] Command executed; Took {stopwatch.Elapsed.TotalMilliseconds} ms");
+
+                            await invokeAsync(() => {
+                                try {
+                                    stateHasChanged();
+                                } catch (Exception e) {
+                                    Debug.WriteLine(e.Message);
+                                    Debug.WriteLine(e.StackTrace);
+                                }
+                            });
+                        }
+                    );
+                }                
             }
 
             var state = initState();
 
             void dispatch(TMessage msg) {
-                Debug.WriteLine(msg);
+                Debug.WriteLine($"[{DateTime.Now}] {msg}");
+
+                // Berechnung neuer State und Command
                 (var newState, var command) = update(state, msg);
                 state = newState;
 
