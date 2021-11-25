@@ -97,6 +97,7 @@ namespace BlazorDSL.Pages {
         record SetItemStatus(TodoItem item, bool status) : Message;
         record ChangeItemText(TodoItem item, string text) : Message;
         record RemoveDoneItems() : Message;
+        record DoneItemsRemoved(IEnumerable<int> ids) : Message;
         record SetInputText(string text) : Message;
         record LoadItemFromDatabase() : Message;
         record ItemsFromDatabaseLoaded(IEnumerable<TodoItem> items) : Message;
@@ -162,12 +163,17 @@ namespace BlazorDSL.Pages {
                 ),
 
                 RemoveDoneItems cmd => (
-                    state with
-                    {
-                        todoItems = state.todoItems.RemoveAll(
-                            item => item.Done == true
-                        )
-                    },
+                    state,
+                    async (Dispatch<Message> dispatch) => {
+                        var doneItems = state.todoItems.Where(x => x.Done);
+                        var ids = doneItems.Select(x => x.Id);
+                        await TodoItemRepository.RemoveItems(ids).ConfigureAwait(false);
+                        dispatch(new DoneItemsRemoved(ids));
+                    }
+                ),
+
+                DoneItemsRemoved cmd => (
+                    state with { todoItems = state.todoItems.RemoveAll(item => cmd.ids.Contains(item.Id))},
                     Cmd<Message>.None
                 ),
 
