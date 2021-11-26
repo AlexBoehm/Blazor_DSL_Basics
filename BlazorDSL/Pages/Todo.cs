@@ -24,8 +24,20 @@ namespace BlazorDSL.Pages {
                     className("TodoList")
                 ),
 
+                div(
+                    input(
+                        type("text"),
+                        bind.input.@string(
+                            @this,
+                            state.filterText,
+                            value => dispatch(new SetFilter(value))
+                        )
+                    )
+                ),
+
                 ul(
                     from item in state.todoItems
+                    where state.filterText == "" || item.Text.Contains(state.filterText, System.StringComparison.OrdinalIgnoreCase)
                     select li(
                         input(
                             type("checkbox"),
@@ -101,9 +113,34 @@ namespace BlazorDSL.Pages {
         record SetInputText(string text) : Message;
         record LoadItemFromDatabase() : Message;
         record ItemsFromDatabaseLoaded(IEnumerable<TodoItem> items) : Message;
+        record SetFilter(string filter) : Message;
+
+        //static class Result {
+        //    Result
+        //}
+
+        //class Result<TValue, TError> {
+        //    public bool Success { get; private set; }
+        //    public TValue Value { get; private set; }
+        //    public TError Error { get; private set; }
+
+
+
+        //}
+
+        record AsyncOperationStatus<TValue>(bool finished, TValue value);
+
+        //class AsyncOperationStatus<TValue> {
+        //    public bool Finished { get; set; }
+
+        //}
 
         // Sollte nach Möglichkeit nicht public sein
-        public record State(ImmutableList<TodoItem> todoItems, string inputText);
+        public record State(
+            ImmutableList<TodoItem> todoItems, 
+            string inputText,
+            string filterText
+        );
 
         // Sollte nach Möglichkeit nicht public sein
         public record TodoItem(
@@ -115,7 +152,8 @@ namespace BlazorDSL.Pages {
         static State InitState() =>
             new State(
                 todoItems: ImmutableList<TodoItem>.Empty,
-                inputText: ""
+                inputText: "",
+                filterText: ""
             );
 
         static async Task LoadItemsFromDatabase(Dispatch<Message> dispatch) {
@@ -132,7 +170,6 @@ namespace BlazorDSL.Pages {
                 dispatch(new ItemAdded(item));
             };
         }
-
 
         static (State state, Command<Message> command) Update(State state, Message message) =>
             message switch {
@@ -217,6 +254,10 @@ namespace BlazorDSL.Pages {
                         todoItems = ImmutableList<TodoItem>.Empty.AddRange(cmd.items)
                     },
                     Cmd<Message>.None
+                ),
+
+                SetFilter cmd => (
+                    state with {  filterText = cmd.filter }, Cmd<Message>.None
                 )
             };
     }
