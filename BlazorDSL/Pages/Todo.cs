@@ -102,16 +102,15 @@ namespace BlazorDSL.Pages {
 
         public record Message();
 
+        // record AddItem(AsyncOperationStatus<string, TodoItem> state);
         record AddItem(string text) : Message;
         record ItemAdded(TodoItem item) : Message;
         record RemoveItem(TodoItem item) : Message;
-        record ItemRemoved(TodoItem item) : Message;
         record SetItemStatus(TodoItem item, bool status) : Message;
         record ChangeItemText(TodoItem item, string text) : Message;
         record RemoveDoneItems() : Message;
         record DoneItemsRemoved(IEnumerable<int> ids) : Message;
         record SetInputText(string text) : Message;
-        record LoadItemFromDatabase() : Message;
         record ItemsFromDatabaseLoaded(IEnumerable<TodoItem> items) : Message;
         record SetFilter(string filter) : Message;
 
@@ -128,7 +127,7 @@ namespace BlazorDSL.Pages {
 
         //}
 
-        record AsyncOperationStatus<TValue>(bool finished, TValue value);
+        record AsyncOperationStatus<TInput, TOuput>(bool finished, TInput input, TOuput output);
 
         //class AsyncOperationStatus<TValue> {
         //    public bool Finished { get; set; }
