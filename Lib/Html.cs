@@ -50,10 +50,10 @@ namespace BlazorDSL {
 
         #region Ereignisse
 
-        public static Attribute onClick(object sender, Action callback)
+        public static Attribute onClick(object sender, Action<MouseEventArgs> callback)
             => new Attribute(
                 "onclick",
-                EventCallback.Factory.Create<MouseEventArgs>(sender, callback)
+                EventCallback.Factory.Create(sender, callback)
             );
 
         #endregion

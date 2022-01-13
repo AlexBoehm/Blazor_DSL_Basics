@@ -2,6 +2,7 @@ using Microsoft.AspNetCore.Components;
 using static BlazorDSL.Html;
 using System.Linq;
 using System.Collections.Generic;
+using Microsoft.AspNetCore.Components.Web;
 
 namespace BlazorDSL.Pages {
     [Route("/counter")]
@@ -27,7 +28,7 @@ namespace BlazorDSL.Pages {
                             p(name),
                             name.StartsWith("J")
                                 ? button(
-                                    attrs(onClick(this, () => names.Remove(name))),
+                                    attrs(onClick(this, _ => names.Remove(name))),
                                     "delete"
                                 )
                                 : empty()
@@ -55,7 +56,7 @@ namespace BlazorDSL.Pages {
             "Andrew Jackson"
         };
 
-        private void IncrementCount() {
+        private void IncrementCount(MouseEventArgs e) {
             currentCount++;
         }
     }
