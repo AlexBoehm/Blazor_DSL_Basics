@@ -49,7 +49,7 @@ namespace BlazorDSL {
         private static string BuildMethod(string methodName, string attibuteName, Type eventType) =>
         $@"
         public static Attribute {methodName}(object sender, Action<{eventType.Name}> callback)
-            => new Attribute(
+            => new KeyValueAttribute(
                 ""{attibuteName}"",
                 EventCallback.Factory.Create(sender, callback)
             );";

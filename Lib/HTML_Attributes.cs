@@ -4,372 +4,372 @@ namespace BlazorDSL {
     public static partial class Html {
         
             public static Attribute abbr(string value)
-                => new Attribute("abbr", value);
+                => new KeyValueAttribute("abbr", value);
 
             public static Attribute accept(string value)
-                => new Attribute("accept", value);
+                => new KeyValueAttribute("accept", value);
 
             public static Attribute acceptCharset(string value)
-                => new Attribute("accept-charset", value);
+                => new KeyValueAttribute("accept-charset", value);
 
             public static Attribute accesskey(string value)
-                => new Attribute("accesskey", value);
+                => new KeyValueAttribute("accesskey", value);
 
             public static Attribute action(string value)
-                => new Attribute("action", value);
+                => new KeyValueAttribute("action", value);
 
             public static Attribute allow(string value)
-                => new Attribute("allow", value);
+                => new KeyValueAttribute("allow", value);
 
             public static Attribute allowfullscreen(string value)
-                => new Attribute("allowfullscreen", value);
+                => new KeyValueAttribute("allowfullscreen", value);
 
             public static Attribute alt(string value)
-                => new Attribute("alt", value);
+                => new KeyValueAttribute("alt", value);
 
             public static Attribute @as(string value)
-                => new Attribute("as", value);
+                => new KeyValueAttribute("as", value);
 
             public static Attribute async(string value)
-                => new Attribute("async", value);
+                => new KeyValueAttribute("async", value);
 
             public static Attribute autocapitalize(string value)
-                => new Attribute("autocapitalize", value);
+                => new KeyValueAttribute("autocapitalize", value);
 
             public static Attribute autocomplete(string value)
-                => new Attribute("autocomplete", value);
+                => new KeyValueAttribute("autocomplete", value);
 
             public static Attribute autofocus(string value)
-                => new Attribute("autofocus", value);
+                => new KeyValueAttribute("autofocus", value);
 
             public static Attribute autoplay(string value)
-                => new Attribute("autoplay", value);
+                => new KeyValueAttribute("autoplay", value);
 
             public static Attribute charset(string value)
-                => new Attribute("charset", value);
+                => new KeyValueAttribute("charset", value);
 
             public static Attribute @checked(string value)
-                => new Attribute("checked", value);
+                => new KeyValueAttribute("checked", value);
 
             public static Attribute cite(string value)
-                => new Attribute("cite", value);
+                => new KeyValueAttribute("cite", value);
 
             public static Attribute className(string value)
-                => new Attribute("class", value);
+                => new KeyValueAttribute("class", value);
 
             public static Attribute color(string value)
-                => new Attribute("color", value);
+                => new KeyValueAttribute("color", value);
 
             public static Attribute cols(string value)
-                => new Attribute("cols", value);
+                => new KeyValueAttribute("cols", value);
 
             public static Attribute colspan(string value)
-                => new Attribute("colspan", value);
+                => new KeyValueAttribute("colspan", value);
 
             public static Attribute content(string value)
-                => new Attribute("content", value);
+                => new KeyValueAttribute("content", value);
 
             public static Attribute contenteditable(string value)
-                => new Attribute("contenteditable", value);
+                => new KeyValueAttribute("contenteditable", value);
 
             public static Attribute controls(string value)
-                => new Attribute("controls", value);
+                => new KeyValueAttribute("controls", value);
 
             public static Attribute coords(string value)
-                => new Attribute("coords", value);
+                => new KeyValueAttribute("coords", value);
 
             public static Attribute crossorigin(string value)
-                => new Attribute("crossorigin", value);
+                => new KeyValueAttribute("crossorigin", value);
 
             public static Attribute data(string value)
-                => new Attribute("data", value);
+                => new KeyValueAttribute("data", value);
 
             public static Attribute datetime(string value)
-                => new Attribute("datetime", value);
+                => new KeyValueAttribute("datetime", value);
 
             public static Attribute decoding(string value)
-                => new Attribute("decoding", value);
+                => new KeyValueAttribute("decoding", value);
 
             public static Attribute @default(string value)
-                => new Attribute("default", value);
+                => new KeyValueAttribute("default", value);
 
             public static Attribute defer(string value)
-                => new Attribute("defer", value);
+                => new KeyValueAttribute("defer", value);
 
             public static Attribute dir(string value)
-                => new Attribute("dir", value);
+                => new KeyValueAttribute("dir", value);
 
             public static Attribute dirname(string value)
-                => new Attribute("dirname", value);
+                => new KeyValueAttribute("dirname", value);
 
             public static Attribute disabled(string value)
-                => new Attribute("disabled", value);
+                => new KeyValueAttribute("disabled", value);
 
             public static Attribute download(string value)
-                => new Attribute("download", value);
+                => new KeyValueAttribute("download", value);
 
             public static Attribute draggable(string value)
-                => new Attribute("draggable", value);
+                => new KeyValueAttribute("draggable", value);
 
             public static Attribute enctype(string value)
-                => new Attribute("enctype", value);
+                => new KeyValueAttribute("enctype", value);
 
             public static Attribute enterkeyhint(string value)
-                => new Attribute("enterkeyhint", value);
+                => new KeyValueAttribute("enterkeyhint", value);
 
             public static Attribute @for(string value)
-                => new Attribute("for", value);
+                => new KeyValueAttribute("for", value);
 
             public static Attribute form(string value)
-                => new Attribute("form", value);
+                => new KeyValueAttribute("form", value);
 
             public static Attribute formaction(string value)
-                => new Attribute("formaction", value);
+                => new KeyValueAttribute("formaction", value);
 
             public static Attribute formenctype(string value)
-                => new Attribute("formenctype", value);
+                => new KeyValueAttribute("formenctype", value);
 
             public static Attribute formmethod(string value)
-                => new Attribute("formmethod", value);
+                => new KeyValueAttribute("formmethod", value);
 
             public static Attribute formnovalidate(string value)
-                => new Attribute("formnovalidate", value);
+                => new KeyValueAttribute("formnovalidate", value);
 
             public static Attribute formtarget(string value)
-                => new Attribute("formtarget", value);
+                => new KeyValueAttribute("formtarget", value);
 
             public static Attribute headers(string value)
-                => new Attribute("headers", value);
+                => new KeyValueAttribute("headers", value);
 
             public static Attribute height(string value)
-                => new Attribute("height", value);
+                => new KeyValueAttribute("height", value);
 
             public static Attribute hidden(string value)
-                => new Attribute("hidden", value);
+                => new KeyValueAttribute("hidden", value);
 
             public static Attribute high(string value)
-                => new Attribute("high", value);
+                => new KeyValueAttribute("high", value);
 
             public static Attribute href(string value)
-                => new Attribute("href", value);
+                => new KeyValueAttribute("href", value);
 
             public static Attribute hreflang(string value)
-                => new Attribute("hreflang", value);
+                => new KeyValueAttribute("hreflang", value);
 
             public static Attribute httpEquiv(string value)
-                => new Attribute("http-equiv", value);
+                => new KeyValueAttribute("http-equiv", value);
 
             public static Attribute id(string value)
-                => new Attribute("id", value);
+                => new KeyValueAttribute("id", value);
 
             public static Attribute imagesizes(string value)
-                => new Attribute("imagesizes", value);
+                => new KeyValueAttribute("imagesizes", value);
 
             public static Attribute imagesrcset(string value)
-                => new Attribute("imagesrcset", value);
+                => new KeyValueAttribute("imagesrcset", value);
 
             public static Attribute inputmode(string value)
-                => new Attribute("inputmode", value);
+                => new KeyValueAttribute("inputmode", value);
 
             public static Attribute integrity(string value)
-                => new Attribute("integrity", value);
+                => new KeyValueAttribute("integrity", value);
 
             public static Attribute @is(string value)
-                => new Attribute("is", value);
+                => new KeyValueAttribute("is", value);
 
             public static Attribute ismap(string value)
-                => new Attribute("ismap", value);
+                => new KeyValueAttribute("ismap", value);
 
             public static Attribute itemid(string value)
-                => new Attribute("itemid", value);
+                => new KeyValueAttribute("itemid", value);
 
             public static Attribute itemprop(string value)
-                => new Attribute("itemprop", value);
+                => new KeyValueAttribute("itemprop", value);
 
             public static Attribute itemref(string value)
-                => new Attribute("itemref", value);
+                => new KeyValueAttribute("itemref", value);
 
             public static Attribute itemscope(string value)
-                => new Attribute("itemscope", value);
+                => new KeyValueAttribute("itemscope", value);
 
             public static Attribute itemtype(string value)
-                => new Attribute("itemtype", value);
+                => new KeyValueAttribute("itemtype", value);
 
             public static Attribute kind(string value)
-                => new Attribute("kind", value);
+                => new KeyValueAttribute("kind", value);
 
             public static Attribute label(string value)
-                => new Attribute("label", value);
+                => new KeyValueAttribute("label", value);
 
             public static Attribute lang(string value)
-                => new Attribute("lang", value);
+                => new KeyValueAttribute("lang", value);
 
             public static Attribute list(string value)
-                => new Attribute("list", value);
+                => new KeyValueAttribute("list", value);
 
             public static Attribute loading(string value)
-                => new Attribute("loading", value);
+                => new KeyValueAttribute("loading", value);
 
             public static Attribute loop(string value)
-                => new Attribute("loop", value);
+                => new KeyValueAttribute("loop", value);
 
             public static Attribute low(string value)
-                => new Attribute("low", value);
+                => new KeyValueAttribute("low", value);
 
             public static Attribute max(string value)
-                => new Attribute("max", value);
+                => new KeyValueAttribute("max", value);
 
             public static Attribute maxlength(string value)
-                => new Attribute("maxlength", value);
+                => new KeyValueAttribute("maxlength", value);
 
             public static Attribute media(string value)
-                => new Attribute("media", value);
+                => new KeyValueAttribute("media", value);
 
             public static Attribute method(string value)
-                => new Attribute("method", value);
+                => new KeyValueAttribute("method", value);
 
             public static Attribute min(string value)
-                => new Attribute("min", value);
+                => new KeyValueAttribute("min", value);
 
             public static Attribute minlength(string value)
-                => new Attribute("minlength", value);
+                => new KeyValueAttribute("minlength", value);
 
             public static Attribute multiple(string value)
-                => new Attribute("multiple", value);
+                => new KeyValueAttribute("multiple", value);
 
             public static Attribute muted(string value)
-                => new Attribute("muted", value);
+                => new KeyValueAttribute("muted", value);
 
             public static Attribute name(string value)
-                => new Attribute("name", value);
+                => new KeyValueAttribute("name", value);
 
             public static Attribute nomodule(string value)
-                => new Attribute("nomodule", value);
+                => new KeyValueAttribute("nomodule", value);
 
             public static Attribute nonce(string value)
-                => new Attribute("nonce", value);
+                => new KeyValueAttribute("nonce", value);
 
             public static Attribute novalidate(string value)
-                => new Attribute("novalidate", value);
+                => new KeyValueAttribute("novalidate", value);
 
             public static Attribute open(string value)
-                => new Attribute("open", value);
+                => new KeyValueAttribute("open", value);
 
             public static Attribute optimum(string value)
-                => new Attribute("optimum", value);
+                => new KeyValueAttribute("optimum", value);
 
             public static Attribute pattern(string value)
-                => new Attribute("pattern", value);
+                => new KeyValueAttribute("pattern", value);
 
             public static Attribute ping(string value)
-                => new Attribute("ping", value);
+                => new KeyValueAttribute("ping", value);
 
             public static Attribute placeholder(string value)
-                => new Attribute("placeholder", value);
+                => new KeyValueAttribute("placeholder", value);
 
             public static Attribute playsinline(string value)
-                => new Attribute("playsinline", value);
+                => new KeyValueAttribute("playsinline", value);
 
             public static Attribute poster(string value)
-                => new Attribute("poster", value);
+                => new KeyValueAttribute("poster", value);
 
             public static Attribute preload(string value)
-                => new Attribute("preload", value);
+                => new KeyValueAttribute("preload", value);
 
             public static Attribute @readonly(string value)
-                => new Attribute("readonly", value);
+                => new KeyValueAttribute("readonly", value);
 
             public static Attribute referrerpolicy(string value)
-                => new Attribute("referrerpolicy", value);
+                => new KeyValueAttribute("referrerpolicy", value);
 
             public static Attribute rel(string value)
-                => new Attribute("rel", value);
+                => new KeyValueAttribute("rel", value);
 
             public static Attribute required(string value)
-                => new Attribute("required", value);
+                => new KeyValueAttribute("required", value);
 
             public static Attribute reversed(string value)
-                => new Attribute("reversed", value);
+                => new KeyValueAttribute("reversed", value);
 
             public static Attribute rows(string value)
-                => new Attribute("rows", value);
+                => new KeyValueAttribute("rows", value);
 
             public static Attribute rowspan(string value)
-                => new Attribute("rowspan", value);
+                => new KeyValueAttribute("rowspan", value);
 
             public static Attribute sandbox(string value)
-                => new Attribute("sandbox", value);
+                => new KeyValueAttribute("sandbox", value);
 
             public static Attribute scope(string value)
-                => new Attribute("scope", value);
+                => new KeyValueAttribute("scope", value);
 
             public static Attribute selected(string value)
-                => new Attribute("selected", value);
+                => new KeyValueAttribute("selected", value);
 
             public static Attribute shape(string value)
-                => new Attribute("shape", value);
+                => new KeyValueAttribute("shape", value);
 
             public static Attribute size(string value)
-                => new Attribute("size", value);
+                => new KeyValueAttribute("size", value);
 
             public static Attribute sizes(string value)
-                => new Attribute("sizes", value);
+                => new KeyValueAttribute("sizes", value);
 
             public static Attribute slot(string value)
-                => new Attribute("slot", value);
+                => new KeyValueAttribute("slot", value);
 
             public static Attribute span(string value)
-                => new Attribute("span", value);
+                => new KeyValueAttribute("span", value);
 
             public static Attribute spellcheck(string value)
-                => new Attribute("spellcheck", value);
+                => new KeyValueAttribute("spellcheck", value);
 
             public static Attribute src(string value)
-                => new Attribute("src", value);
+                => new KeyValueAttribute("src", value);
 
             public static Attribute srcdoc(string value)
-                => new Attribute("srcdoc", value);
+                => new KeyValueAttribute("srcdoc", value);
 
             public static Attribute srclang(string value)
-                => new Attribute("srclang", value);
+                => new KeyValueAttribute("srclang", value);
 
             public static Attribute srcset(string value)
-                => new Attribute("srcset", value);
+                => new KeyValueAttribute("srcset", value);
 
             public static Attribute start(string value)
-                => new Attribute("start", value);
+                => new KeyValueAttribute("start", value);
 
             public static Attribute step(string value)
-                => new Attribute("step", value);
+                => new KeyValueAttribute("step", value);
 
             public static Attribute style(string value)
-                => new Attribute("style", value);
+                => new KeyValueAttribute("style", value);
 
             public static Attribute tabindex(string value)
-                => new Attribute("tabindex", value);
+                => new KeyValueAttribute("tabindex", value);
 
             public static Attribute target(string value)
-                => new Attribute("target", value);
+                => new KeyValueAttribute("target", value);
 
             public static Attribute title(string value)
-                => new Attribute("title", value);
+                => new KeyValueAttribute("title", value);
 
             public static Attribute translate(string value)
-                => new Attribute("translate", value);
+                => new KeyValueAttribute("translate", value);
 
             public static Attribute type(string value)
-                => new Attribute("type", value);
+                => new KeyValueAttribute("type", value);
 
             public static Attribute usemap(string value)
-                => new Attribute("usemap", value);
+                => new KeyValueAttribute("usemap", value);
 
             public static Attribute value(string value)
-                => new Attribute("value", value);
+                => new KeyValueAttribute("value", value);
 
             public static Attribute width(string value)
-                => new Attribute("width", value);
+                => new KeyValueAttribute("width", value);
 
             public static Attribute wrap(string value)
-                => new Attribute("wrap", value);
+                => new KeyValueAttribute("wrap", value);
     }
 }

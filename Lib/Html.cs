@@ -25,17 +25,20 @@ namespace BlazorDSL {
             => attributes;
 
         public static Attribute attribute(string key, string value)
-            => new Attribute(key, value);
+            => new KeyValueAttribute(key, value);
 
         public static Attribute parameter(string name, object value)
-            => new Attribute(name, value);
+            => new KeyValueAttribute(name, value);
+
+        public static Attribute emptyAttribute()
+            => EmptyAttribute.Instance;
 
         #endregion        
 
         #region templateParameter
 
         public static Attribute templateParameter(string key, params Node[] template)
-            => new Attribute(
+            => new KeyValueAttribute(
                  key,
                 (RenderFragment)(
                     (RenderTreeBuilder builder) => {
@@ -45,7 +48,7 @@ namespace BlazorDSL {
             );
 
         public static Attribute templateParameter(string key, Func<Node> template)
-            => new Attribute(
+            => new KeyValueAttribute(
                  key,
                 (RenderFragment)(
                     (RenderTreeBuilder builder) => {
@@ -55,7 +58,7 @@ namespace BlazorDSL {
             );
 
         public static Attribute templateParameter<TContext>(string key, Func<TContext, Node> template)
-            => new Attribute(
+            => new KeyValueAttribute(
                 key,
                 (RenderFragment<TContext>)(
                     (TContext context) =>

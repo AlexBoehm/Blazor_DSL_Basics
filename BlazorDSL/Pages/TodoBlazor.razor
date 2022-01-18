@@ -1,0 +1,34 @@
+﻿@page "/todo-blazor"
+
+<ul class="TodoList">
+    @foreach (var item in _items) {
+        <li>
+            <input type="checkbox" @bind="item.Done"/>
+            <div>@item.Text</div>
+        </li>
+    }
+</ul>    
+
+<form @onsubmit="AddItem">
+    <input type="text" @bind-value="inputValue" />
+    <button type="submit">Add Todo</button>
+</form>
+
+@code{
+    List<TodoItem> _items = new List<TodoItem> {
+        new TodoItem { Text = "Task 1", Done = true },
+        new TodoItem { Text = "Task 2", Done = false },
+        new TodoItem { Text = "Task 3", Done = false }
+    };
+
+    string inputValue { get; set; }
+
+    void AddItem() {
+        _items.Add(new TodoItem {
+            Text = inputValue,
+            Done = false
+        });
+
+        inputValue = "";
+    }
+}

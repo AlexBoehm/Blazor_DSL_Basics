@@ -60,7 +60,7 @@ namespace BlazorDSL {
 
             if (isVoidElement)
                 yield return @$"
-        public static Node {methodName}(Attribute[] attributes)
+        public static Node {methodName}(params Attribute[] attributes)
             => new TagNode(""{tag}"", attributes);";
 
             if (!isVoidElement && withText)

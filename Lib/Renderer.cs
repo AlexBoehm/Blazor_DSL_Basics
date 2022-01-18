@@ -3,7 +3,8 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 
-namespace BlazorDSL {
+namespace BlazorDSL
+{
     public static class Renderer {
         public static void Render(RenderTreeBuilder builder, Node node) {
             Render(builder, node, 0);
@@ -77,11 +78,27 @@ namespace BlazorDSL {
         }
 
         private static void AddAttributes(int sequenceNumber, RenderTreeBuilder builder, Attribute[] attributes) {
+            
+            var allAttributes = GetAttributes(attributes);
+
             builder.AddMultipleAttributes(
                 sequenceNumber,
-                from attribute in attributes
+                from attribute in allAttributes                
                 select new KeyValuePair<string, object>(attribute.Name, attribute.Value)
             );
+        }
+
+        private static IEnumerable<KeyValueAttribute> GetAttributes(Attribute[] attributes) {
+            return attributes.Select(GetAttributes).SelectMany(x => x);
+        }
+
+        private static IEnumerable<KeyValueAttribute> GetAttributes(Attribute attribute) {
+            return attribute switch {
+                KeyValueAttribute a => new KeyValueAttribute[] { a },
+                EmptyAttribute => new KeyValueAttribute[0],
+                MultipleAttributes a => a.Values.SelectMany(GetAttributes),
+                _ => throw new NotImplementedException()
+            };
         }
     }
 }
